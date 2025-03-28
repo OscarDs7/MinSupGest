@@ -30,7 +30,7 @@
         android:layout_width="295dp"
         android:layout_height="62dp"
         android:layout_gravity="top|left"
-        android:layout_marginLeft="46dp"
+        android:layout_marginStart="46dp"
         android:layout_marginTop="56dp"
         android:layout_x="52dp"
         android:layout_y="48dp"
@@ -44,7 +44,7 @@
         android:textColor="@color/black"
         android:textSize="34sp"
         android:typeface="normal"
-        tools:ignore="TextSizeCheck" />
+        tools:ignore="RtlHardcoded" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgusuario"
