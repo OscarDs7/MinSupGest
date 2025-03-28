@@ -1,20 +1,31 @@
 package com.example.minsupgest
 
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class Selecionusuario : AppCompatActivity() {
+    //Instancias a componentes gráficos
+    private lateinit var gerente: Button
+    private lateinit var empleado: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_selecionusuario)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.back)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        //Vinculación a componentes gráficos
+        gerente = findViewById(R.id.btnGerente)
+        empleado = findViewById(R.id.btnEmpleado)
+
+        //Eventos escucha para cambiar a nueva ventana
+        gerente.setOnClickListener {
+            val intent = Intent(this@Selecionusuario, RegistrarUsuarioActivity::class.java)
+            startActivity(intent)
         }
     }
 }
