@@ -6,8 +6,8 @@
     android:id="@+id/back"
     android:layout_width="match_parent"
     android:layout_height="917dp"
-    android:background="@drawable/Fondo"
-    android:backgroundTint="#2EB9D1"
+    android:background="#2FC8E2"
+    android:backgroundTint="#2FC8E2"
     android:textAlignment="center"
     tools:ignore="Deprecated">
 
