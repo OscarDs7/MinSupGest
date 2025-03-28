@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">MinSupGest</string>
-    <string name="generente">Generente</string>
+    <string name="gerente">Gerente</string>
     <string name="empleado">Empleado</string>
-    <string name="minsupgest">MINSUPGEST</string>
 </resources>

@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF54A4D6"
+    tools:context=".RegistrarUsuarioActivity">
+
+
+    <Button
+        android:id="@+id/btnReturn"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="2dp"
+        android:layout_x="6dp"
+        android:layout_y="10dp"
+        android:background="@drawable/retorno"
+        android:backgroundTint="@android:color/holo_blue_light"
+        app:icon="@android:drawable/ic_menu_revert"
+        app:iconGravity="textTop"
+        app:iconSize="30dp"
+        app:iconTint="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/txtTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="32dp"
+        android:layout_x="84dp"
+        android:layout_y="39dp"
+        android:background="@drawable/button"
+        android:text="Registrar Usuario"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <ImageView
+        android:id="@+id/imgUser"
+        android:layout_width="wrap_content"
+        android:layout_height="170dp"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginEnd="151dp"
+        android:layout_x="-2dp"
+        android:layout_y="91dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTitle"
+        tools:srcCompat="@drawable/usuario" />
+
+    <ImageView
+        android:id="@+id/imgBackground"
+        android:layout_width="340dp"
+        android:layout_height="407dp"
+        android:layout_x="35dp"
+        android:layout_y="269dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgUser"
+        app:srcCompat="@drawable/cuadro_grande"
+        tools:layout_editor_absoluteY="308dp" />
+
+    <EditText
+        android:id="@+id/edtName"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_x="79dp"
+        android:layout_y="302dp"
+        android:background="@drawable/button"
+        android:ems="10"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:text="Nombre"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="39dp" />
+
+    <EditText
+        android:id="@+id/edtSurname"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_x="78dp"
+        android:layout_y="374dp"
+        android:background="@drawable/button"
+        android:ems="10"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:text="Apellido"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.453"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/edtPhone"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="192dp"
+        android:layout_x="77dp"
+        android:layout_y="442dp"
+        android:background="@drawable/button"
+        android:ems="10"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:text="Teléfono"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgUser" />
+
+    <EditText
+        android:id="@+id/edtPassword"
+        android:layout_width="250dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="128dp"
+        android:layout_x="78dp"
+        android:layout_y="507dp"
+        android:background="@drawable/button"
+        android:ems="10"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtPhone" />
+
+    <Button
+        android:id="@+id/btnAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_x="132dp"
+        android:layout_y="591dp"
+        android:background="@drawable/button"
+        android:backgroundTint="#7DC6D3"
+        android:text="Crear Usuario"
+        android:textColorLink="@android:color/holo_blue_light"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtPassword" />
+
+</AbsoluteLayout>

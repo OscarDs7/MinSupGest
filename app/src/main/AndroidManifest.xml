@@ -16,6 +16,9 @@
             android:name=".Selecionusuario"
             android:exported="false" />
         <activity
+            android:name=".RegistrarUsuarioActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

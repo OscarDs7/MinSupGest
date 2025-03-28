@@ -65,7 +65,7 @@
         android:layout_x="80dp"
         android:layout_y="369dp"
         android:backgroundTint="#7DC6D3"
-        android:text="@string/generente"
+        android:text="@string/gerente"
         android:textColor="#616161"
         android:textColorLink="#DB2C2C"
         android:textSize="34sp" />
