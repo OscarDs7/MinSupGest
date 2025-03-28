@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/back"
+    android:layout_width="match_parent"
+    android:layout_height="917dp"
+    android:background="@drawable/Fondo"
+    android:backgroundTint="#2EB9D1"
+    android:textAlignment="center"
+    tools:ignore="Deprecated">
+
+    <ImageView
+        android:id="@+id/fondo"
+        android:layout_width="334dp"
+        android:layout_height="220dp"
+        android:layout_gravity="top|left"
+        android:layout_marginStart="47dp"
+        android:layout_marginTop="410dp"
+        android:layout_x="46dp"
+        android:layout_y="341dp"
+        android:background="@drawable/objeto1"
+        android:contentDescription="TODO"
+        android:scaleType="centerInside"
+        tools:ignore="RtlHardcoded,ImageContrastCheck" />
+
+    <TextView
+        android:id="@+id/Titulo"
+        android:layout_width="295dp"
+        android:layout_height="62dp"
+        android:layout_gravity="top|left"
+        android:layout_marginLeft="46dp"
+        android:layout_marginTop="56dp"
+        android:layout_x="52dp"
+        android:layout_y="48dp"
+        android:background="@drawable/objeto1"
+        android:backgroundTint="#228999"
+        android:gravity="center_horizontal|top"
+        android:includeFontPadding="false"
+        android:lineHeight="29.05dp"
+        android:text="MINSUPGEST"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="34sp"
+        android:typeface="normal"
+        tools:ignore="TextSizeCheck" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgusuario"
+        android:layout_width="177dp"
+        android:layout_height="177dp"
+        android:layout_x="122dp"
+        android:layout_y="131dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/perfil"
+        app:shapeAppearanceOverlay="@style/CircleImageView"
+        app:strokeColor="@color/black"
+        app:strokeWidth="2dp" />
+
+    <Button
+        android:id="@+id/btnGerente"
+        android:layout_width="266dp"
+        android:layout_height="65dp"
+        android:layout_x="80dp"
+        android:layout_y="369dp"
+        android:backgroundTint="#7DC6D3"
+        android:text="@string/generente"
+        android:textColor="#616161"
+        android:textColorLink="#DB2C2C"
+        android:textSize="34sp" />
+
+    <Button
+        android:id="@+id/btnEmpleado"
+        android:layout_width="266dp"
+        android:layout_height="65dp"
+        android:layout_x="82dp"
+        android:layout_y="452dp"
+        android:backgroundTint="#7DC6D3"
+        android:text="@string/empleado"
+        android:textColor="#616161"
+        android:textColorLink="#DB2C2C"
+        android:textSize="34sp" />
+
+
+</AbsoluteLayout>

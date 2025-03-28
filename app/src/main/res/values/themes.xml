@@ -6,4 +6,7 @@
     </style>
 
     <style name="Theme.MinSupGest" parent="Base.Theme.MinSupGest" />
+    <style name="CircleImageView" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">50%</item>
+    </style>
 </resources>
