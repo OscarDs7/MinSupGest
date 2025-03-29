@@ -1,20 +1,42 @@
 package com.example.minsupgest
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class Iniciogerente : AppCompatActivity() {
+    //Instancias a componentes gráficos
+    private lateinit var gerente: EditText
+    private lateinit var contrasena: EditText
+    private lateinit var ingresar: Button
+    private lateinit var salir: Button
+
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_iniciogerente)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        //Vinculación a los componentes
+        gerente = findViewById(R.id.etxtusuario2)
+        contrasena = findViewById(R.id.etxtcontra2)
+        ingresar = findViewById(R.id.btnenter2)
+        salir = findViewById(R.id.btnexit2)
+
+        //Eventos
+        ingresar.setOnClickListener {
+            Toast.makeText(this@Iniciogerente, "Has ingresado como Gerente!", Toast.LENGTH_LONG).show()
         }
+        salir.setOnClickListener {
+            val intent = Intent(this@Iniciogerente, Selecionusuario::class.java)
+            startActivity(intent)
+        }
+
+
     }
 }

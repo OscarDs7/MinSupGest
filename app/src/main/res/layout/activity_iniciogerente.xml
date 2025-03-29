@@ -10,7 +10,7 @@
     tools:context=".Iniciogerente">
 
     <Button
-        android:id="@+id/btnsalir"
+        android:id="@+id/btnexit2"
         android:layout_width="166dp"
         android:layout_height="50dp"
         android:layout_marginStart="121dp"
