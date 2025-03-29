@@ -28,7 +28,7 @@ class Iniciogerente : AppCompatActivity() {
         ingresar = findViewById(R.id.btnenter2)
         salir = findViewById(R.id.btnexit2)
 
-        //Eventos
+        //Eventos de los botones
         ingresar.setOnClickListener {
             Toast.makeText(this@Iniciogerente, "Has ingresado como Gerente!", Toast.LENGTH_LONG).show()
         }
