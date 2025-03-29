@@ -76,7 +76,7 @@
         android:background="#4567CC"
         android:backgroundTint="#7DC6D3"
         android:ems="10"
-        android:hint="Nombre"
+        android:hint="Empleado"
         android:shadowColor="#DED3D3"
         android:textAlignment="center"
         android:textColor="#EFE3E3"
@@ -126,6 +126,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
+        android:id="@+id/btnsalir2"
         android:layout_width="166dp"
         android:layout_height="50dp"
         android:layout_marginStart="121dp"
