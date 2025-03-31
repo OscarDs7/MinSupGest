@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#2FC8E2"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/imgEstadisticas"
+        android:layout_width="192dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="40dp"
+        android:background="#F4F4F4"
+        android:src="@drawable/ic_estadisticas"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtRecomendaciones"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Recomendaciones"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgRecomendaciones" />
+
+    <ImageView
+        android:id="@+id/imgInventario"
+        android:layout_width="192dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="12dp"
+        android:background="#F4F4F4"
+        android:src="@drawable/ic_inventario"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtEstadisticas" />
+
+    <ImageView
+        android:id="@+id/imgEmpleados"
+        android:layout_width="192dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="12dp"
+        android:background="#F4F4F4"
+        android:src="@drawable/ic_empleados"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtRecomendaciones" />
+
+    <TextView
+        android:id="@+id/txtInventario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Inventario"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgInventario" />
+
+    <TextView
+        android:id="@+id/txtEmpleados"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Empleados"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgEmpleados" />
+
+    <ImageView
+        android:id="@+id/imgRecomendaciones"
+        android:layout_width="192dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="12dp"
+        android:background="#F4F4F4"
+        android:src="@drawable/ic_recomendaciones"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/txtInventario" />
+
+    <TextView
+        android:id="@+id/txtEstadisticas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Estadísticas"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgEstadisticas" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

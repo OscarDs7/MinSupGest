@@ -13,6 +13,12 @@
         android:theme="@style/Theme.MinSupGest"
         tools:targetApi="31">
         <activity
+            android:name=".menuEmpleados"
+            android:exported="false" />
+        <activity
+            android:name=".menuAdmin"
+            android:exported="false" />
+        <activity
             android:name=".Iniciosessionus"
             android:exported="false" />
         <activity
@@ -26,10 +32,10 @@
         </activity>
         <activity
             android:name=".RegistrarUsuarioActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
     </application>
 
 </manifest>
