@@ -13,6 +13,12 @@
         android:theme="@style/Theme.MinSupGest"
         tools:targetApi="31">
         <activity
+            android:name=".MenuEmpleadoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MenuAdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".menuEmpleados"
             android:exported="false" />
         <activity

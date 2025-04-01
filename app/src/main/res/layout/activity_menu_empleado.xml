@@ -6,111 +6,92 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#2FC8E2"
-    tools:context=".MenuAdminActivity">
+    tools:context=".MenuEmpleadoActivity">
 
     <ImageButton
-        android:id="@+id/imgStatistics"
+        android:id="@+id/imgStatistics2"
         android:layout_width="190dp"
         android:layout_height="110dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="50dp"
         android:background="@color/white"
         android:contentDescription="Estadísticas"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.574"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_estadisticas"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/txtStatistics"
+        android:id="@+id/txtStatistics2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="Estadísticas"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgStatistics" />
+        app:layout_constraintTop_toBottomOf="@+id/imgStatistics2" />
 
     <ImageButton
-        android:id="@+id/imgInventary"
+        android:id="@+id/imgInventary2"
         android:layout_width="190dp"
         android:layout_height="110dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="32dp"
         android:background="@color/white"
         android:contentDescription="Inventario"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.583"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtStatistics"
+        app:layout_constraintTop_toBottomOf="@+id/txtInventary2"
         app:srcCompat="@drawable/ic_inventario"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/txtInventary"
+        android:id="@+id/txtInventary2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="Inventario"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.552"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgInventary" />
+        app:layout_constraintTop_toBottomOf="@+id/imgComments2" />
 
     <ImageButton
-        android:id="@+id/imgComments"
+        android:id="@+id/imgComments2"
         android:layout_width="192dp"
         android:layout_height="110dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="32dp"
         android:background="@color/white"
         android:contentDescription="Recomendaciones"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.579"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtInventary"
+        app:layout_constraintTop_toBottomOf="@+id/txtStatistics2"
         app:srcCompat="@drawable/ic_recomendaciones" />
 
     <TextView
-        android:id="@+id/txtComments"
+        android:id="@+id/txtComments2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="Recomendaciones"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.599"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgComments" />
+        app:layout_constraintTop_toBottomOf="@+id/imgInventary2" />
 
-    <ImageButton
-        android:id="@+id/imgEmployes"
-        android:layout_width="192dp"
-        android:layout_height="110dp"
-        android:layout_marginTop="15dp"
-        android:background="@color/white"
-        android:contentDescription="Empleados"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtComments"
-        app:srcCompat="@drawable/ic_empleados" />
-
-    <TextView
-        android:id="@+id/txtEmployes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="Empleados"
-        android:textColor="@color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgEmployes" />
 </androidx.constraintlayout.widget.ConstraintLayout>
