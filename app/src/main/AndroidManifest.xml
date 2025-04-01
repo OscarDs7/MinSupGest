@@ -19,12 +19,6 @@
             android:name=".MenuAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".menuEmpleados"
-            android:exported="false" />
-        <activity
-            android:name=".menuAdmin"
-            android:exported="false" />
-        <activity
             android:name=".Iniciosessionus"
             android:exported="false" />
         <activity
