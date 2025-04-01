@@ -9,7 +9,7 @@
     tools:context=".MenuEmpleadoActivity">
 
     <ImageButton
-        android:id="@+id/imgStatistics2"
+        android:id="@+id/imgbStatistics2"
         android:layout_width="190dp"
         android:layout_height="110dp"
         android:layout_marginTop="50dp"
@@ -35,22 +35,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgStatistics2" />
+        app:layout_constraintTop_toBottomOf="@+id/imgbStatistics2" />
 
     <ImageButton
-        android:id="@+id/imgInventary2"
-        android:layout_width="190dp"
+        android:id="@+id/imgbInventary2"
+        android:layout_width="192dp"
         android:layout_height="110dp"
         android:layout_marginTop="32dp"
         android:background="@color/white"
-        android:contentDescription="Inventario"
+        android:contentDescription="Recomendaciones"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.583"
+        app:layout_constraintHorizontal_bias="0.579"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtInventary2"
-        app:srcCompat="@drawable/ic_inventario"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/txtStatistics2"
+        app:srcCompat="@drawable/ic_inventario" />
 
     <TextView
         android:id="@+id/txtInventary2"
@@ -64,21 +63,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.552"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgComments2" />
+        app:layout_constraintTop_toBottomOf="@+id/imgbInventary2" />
 
     <ImageButton
-        android:id="@+id/imgComments2"
-        android:layout_width="192dp"
+        android:id="@+id/imgbComments2"
+        android:layout_width="190dp"
         android:layout_height="110dp"
         android:layout_marginTop="32dp"
         android:background="@color/white"
-        android:contentDescription="Recomendaciones"
+        android:contentDescription="Inventario"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.579"
+        app:layout_constraintHorizontal_bias="0.583"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtStatistics2"
-        app:srcCompat="@drawable/ic_recomendaciones" />
+        app:layout_constraintTop_toBottomOf="@+id/txtInventary2"
+        app:srcCompat="@drawable/ic_recomendaciones"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/txtComments2"
@@ -92,6 +92,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.599"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgInventary2" />
+        app:layout_constraintTop_toBottomOf="@+id/imgbComments2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

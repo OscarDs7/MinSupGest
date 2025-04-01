@@ -9,7 +9,7 @@
     tools:context=".MenuAdminActivity">
 
     <ImageButton
-        android:id="@+id/imgStatistics"
+        android:id="@+id/imgbStatistics"
         android:layout_width="190dp"
         android:layout_height="110dp"
         android:layout_marginTop="40dp"
@@ -33,10 +33,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgStatistics" />
+        app:layout_constraintTop_toBottomOf="@+id/imgbStatistics" />
 
     <ImageButton
-        android:id="@+id/imgInventary"
+        android:id="@+id/imgbInventary"
         android:layout_width="190dp"
         android:layout_height="110dp"
         android:layout_marginTop="15dp"
@@ -60,10 +60,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgInventary" />
+        app:layout_constraintTop_toBottomOf="@+id/imgbInventary" />
 
     <ImageButton
-        android:id="@+id/imgComments"
+        android:id="@+id/imgbComments"
         android:layout_width="192dp"
         android:layout_height="110dp"
         android:layout_marginTop="15dp"
@@ -86,10 +86,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgComments" />
+        app:layout_constraintTop_toBottomOf="@+id/imgbComments" />
 
     <ImageButton
-        android:id="@+id/imgEmployes"
+        android:id="@+id/imgbEmployes"
         android:layout_width="192dp"
         android:layout_height="110dp"
         android:layout_marginTop="15dp"
@@ -112,5 +112,5 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgEmployes" />
+        app:layout_constraintTop_toBottomOf="@+id/imgbEmployes" />
 </androidx.constraintlayout.widget.ConstraintLayout>
