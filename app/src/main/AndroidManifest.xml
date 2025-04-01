@@ -19,9 +19,6 @@
             android:name=".MenuAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".Iniciosessionus"
-            android:exported="false" />
-        <activity
             android:name=".Selecionusuario"
             android:exported="true">
             <intent-filter>
@@ -30,6 +27,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Iniciogerente"
+            android:exported="false" />
+        <activity
+            android:name=".Iniciosessionus"
+            android:exported="false" />
         <activity
             android:name=".RegistrarUsuarioActivity"
             android:exported="true" />

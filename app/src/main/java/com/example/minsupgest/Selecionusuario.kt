@@ -24,8 +24,13 @@ class Selecionusuario : AppCompatActivity() {
 
         //Eventos escucha para cambiar a nueva ventana
         gerente.setOnClickListener {
-            val intent = Intent(this@Selecionusuario, RegistrarUsuarioActivity::class.java)
+            val intent = Intent(this@Selecionusuario, Iniciogerente::class.java)
             startActivity(intent)
         }
+        empleado.setOnClickListener {
+            val intent = Intent(this@Selecionusuario, Iniciosessionus::class.java)
+            startActivity(intent)
+        }
+
     }
 }
