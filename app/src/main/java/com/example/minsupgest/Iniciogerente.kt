@@ -28,11 +28,19 @@ class Iniciogerente : AppCompatActivity() {
         ingresar = findViewById(R.id.btnenter2)
         salir = findViewById(R.id.btnsalir)
 
+        //Obtenemos la entrada de datos
+        val user = gerente.text.toString()
+        val passwd = contrasena.text.toString()
+
         //Eventos de los botones
-        ingresar.setOnClickListener  {
+        ingresar.setOnClickListener {
+            if (user.isEmpty() && passwd.isEmpty()) {
+                Toast.makeText(this@Iniciogerente, "No has llenado los campos", Toast.LENGTH_SHORT).show()
+            }else{
                 Toast.makeText(this@Iniciogerente, "Has ingresado como Gerente!", Toast.LENGTH_LONG).show()
                 val intent = Intent(this@Iniciogerente, MenuAdminActivity::class.java)
                 startActivity(intent)
+            }
         }
         salir.setOnClickListener {
             val intent = Intent(this@Iniciogerente, Selecionusuario::class.java)
