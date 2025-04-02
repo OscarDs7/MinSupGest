@@ -1,7 +1,9 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-}
+        id("com.android.application")
+        // Add the Google services Gradle plugin
+        id("com.google.gms.google-services")
+        alias(libs.plugins.kotlin.android) // Dejamos solo el alias de Kotlin
+    }
 
 android {
     namespace = "com.example.minsupgest"
@@ -36,7 +38,9 @@ android {
 }
 
 dependencies {
-
+    // Importamos el Firebase BoM
+    implementation(platform("com.google.firebase:firebase-bom:33.12.0"))
+    implementation("com.google.firebase:firebase-analytics")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -46,4 +50,5 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
 }
