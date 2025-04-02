@@ -29,10 +29,10 @@ class Iniciogerente : AppCompatActivity() {
         salir = findViewById(R.id.btnsalir)
 
         //Eventos de los botones
-        ingresar.setOnClickListener {
-            Toast.makeText(this@Iniciogerente, "Has ingresado como Gerente!", Toast.LENGTH_LONG).show()
-            val intent = Intent(this@Iniciogerente, MenuAdminActivity::class.java)
-            startActivity(intent)
+        ingresar.setOnClickListener  {
+                Toast.makeText(this@Iniciogerente, "Has ingresado como Gerente!", Toast.LENGTH_LONG).show()
+                val intent = Intent(this@Iniciogerente, MenuAdminActivity::class.java)
+                startActivity(intent)
         }
         salir.setOnClickListener {
             val intent = Intent(this@Iniciogerente, Selecionusuario::class.java)
