@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "35161875170",
+    "project_id": "minsupgest",
+    "storage_bucket": "minsupgest.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:35161875170:android:681762ba822cb23782f4bb",
+        "android_client_info": {
+          "package_name": "com.example.minsupgest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbNCDHvz1SNMOV4RfSfjyO-zzTTQ3wOTI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
