@@ -28,14 +28,27 @@ class Iniciosessionus : AppCompatActivity() {
 
         //Eventos en los botones
         enter.setOnClickListener {
-            Toast.makeText(this@Iniciosessionus, "Has ingresado como Empleado!", Toast.LENGTH_LONG).show()
-            val intent = Intent(this@Iniciosessionus, MenuEmpleadoActivity::class.java)
-            startActivity(intent)
+            val user = employee.text.toString().trim()
+            val passw = password.text.toString().trim()
+            if (user.isEmpty() || passw.isEmpty()) {
+                Toast.makeText(this, "Por favor, ingrese usuario y contraseña", Toast.LENGTH_SHORT).show()
+            }else if (validarCredenciales(user, passw)) {
+                Toast.makeText(this, "Has ingresado como empleado!", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this@Iniciosessionus, MenuEmpleadoActivity::class.java)
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
+            }
         }
         exit.setOnClickListener {
             val intent = Intent(this@Iniciosessionus, Selecionusuario::class.java)
             startActivity(intent)
         }
 
+    }
+
+    // Méthod para validar credenciales
+    private fun validarCredenciales(user: String, passw: String): Boolean {
+        return user == "user" && passw == "1234" // Aquí puedes implementar validación con una base de datos
     }
 }

@@ -8,6 +8,8 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+
 
 class Iniciogerente : AppCompatActivity() {
     // Instancias a componentes gráficos
@@ -15,6 +17,7 @@ class Iniciogerente : AppCompatActivity() {
     private lateinit var contrasena: EditText
     private lateinit var ingresar: Button
     private lateinit var salir: Button
+    private lateinit var auth: FirebaseAuth  // Instancia de Firebase Auth
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,31 +31,41 @@ class Iniciogerente : AppCompatActivity() {
         ingresar = findViewById(R.id.btnenter2)
         salir = findViewById(R.id.btnsalir)
 
-        // Evento de botón ingresar
+        // Inicializar Firebase Authentication
+        auth = FirebaseAuth.getInstance()
+
+        // Evento del botón ingresar
         ingresar.setOnClickListener {
             val user = gerente.text.toString().trim()
             val passwd = contrasena.text.toString().trim()
 
             if (user.isEmpty() || passwd.isEmpty()) {
                 Toast.makeText(this, "Por favor, ingrese usuario y contraseña", Toast.LENGTH_SHORT).show()
-            } else if (validarCredenciales(user, passwd)) {
-                Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this@Iniciogerente, MenuAdminActivity::class.java)
-                startActivity(intent)
             } else {
-                Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
+                validarCredenciales(user, passwd)
+                Toast.makeText(this, "Has ingresado como gerente!", Toast.LENGTH_SHORT).show()
             }
         }
 
-        // Evento de botón salir
+        // Evento del botón salir
         salir.setOnClickListener {
             val intent = Intent(this@Iniciogerente, Selecionusuario::class.java)
             startActivity(intent)
         }
     }
 
-    // Méthod para validar credenciales (debes cambiarlo por una validación real)
-    private fun validarCredenciales(user: String, passwd: String): Boolean {
-        return user == "admin" && passwd == "1234" // Aquí puedes implementar validación con una base de datos
+    // Función para autenticación en Firebase
+    private fun validarCredenciales(email: String, password: String) {
+        auth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this@Iniciogerente, MenuAdminActivity::class.java)
+                    startActivity(intent)
+                    finish() // Cierra esta actividad para que no se pueda regresar con "atrás"
+                } else {
+                    Toast.makeText(this, "Error: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                }
+            }
     }
 }
