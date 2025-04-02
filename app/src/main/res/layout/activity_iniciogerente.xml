@@ -14,6 +14,7 @@
         android:layout_width="166dp"
         android:layout_height="50dp"
         android:layout_marginStart="121dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="117dp"
         android:backgroundTint="#D90909"
         android:text="Salir"
@@ -53,16 +54,14 @@
         android:layout_width="334dp"
         android:layout_height="220dp"
         android:layout_gravity="top|left"
-        android:layout_marginStart="38dp"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="39dp"
         android:layout_x="46dp"
         android:layout_y="341dp"
         android:background="@drawable/objeto1"
         android:contentDescription="TODO"
         android:scaleType="centerInside"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgusuario6"
         tools:ignore="RtlHardcoded,ImageContrastCheck" />
@@ -71,7 +70,7 @@
         android:id="@+id/etxtcontra2"
         android:layout_width="255dp"
         android:layout_height="65dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginTop="27dp"
         android:background="#7DC6D3"
         android:ems="10"
         android:hint="Contraseña"
@@ -81,7 +80,7 @@
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgusuario6" />
+        app:layout_constraintTop_toBottomOf="@+id/etxtusuario2" />
 
     <EditText
         android:id="@+id/etxtusuario2"
