@@ -1,5 +1,15 @@
 <resources>
     <string name="app_name">MinSupGest</string>
+    <!-- Selección de Usuario -->
     <string name="gerente">Gerente</string>
     <string name="empleado">Empleado</string>
+    <!-- Inventario -->
+    <string name="title_inventary">Inventario</string>
+    <string name="nombre_prod">Producto</string>
+    <string name="precio_prod">Precio</string>
+    <string name="cantidad_prod">Cantidad</string>
+    <string name="descripcion_prod">Descripción</string>
+    <!-- CardView -->
+    <string name="unidades">Unidades</string>
+    <string name="vendidas">Vendidas</string>
 </resources>
