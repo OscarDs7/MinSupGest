@@ -7,8 +7,6 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class Iniciosessionus : AppCompatActivity() {
     //Instancias a componentes gráficos
@@ -31,6 +29,8 @@ class Iniciosessionus : AppCompatActivity() {
         //Eventos en los botones
         enter.setOnClickListener {
             Toast.makeText(this@Iniciosessionus, "Has ingresado como Empleado!", Toast.LENGTH_LONG).show()
+            val intent = Intent(this@Iniciosessionus, MenuEmpleadoActivity::class.java)
+            startActivity(intent)
         }
         exit.setOnClickListener {
             val intent = Intent(this@Iniciosessionus, Selecionusuario::class.java)

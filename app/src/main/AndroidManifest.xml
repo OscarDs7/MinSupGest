@@ -13,23 +13,36 @@
         android:theme="@style/Theme.MinSupGest"
         tools:targetApi="31">
         <activity
-            android:name=".Iniciosessionus"
-            android:exported="false" />
-        <activity
             android:name=".Selecionusuario"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
+            android:name=".Iniciosessionus"
+            android:exported="false" />
+        <activity
+            android:name=".Iniciogerente"
+            android:exported="false"/>
+        <activity
+            android:name=".MenuEmpleadoActivity"
+            android:exported="false"/>
+        <activity
+            android:name=".MenuAdminActivity"
+            android:exported="false"/>
+        <activity
             android:name=".RegistrarUsuarioActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".InventarioActivity"
+            android:exported="false"/>
         <activity
             android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:exported="false">
+        </activity>
     </application>
 
 </manifest>
