@@ -51,7 +51,7 @@ class Iniciogerente : AppCompatActivity() {
         }
     }
 
-    // Método para validar credenciales (debes cambiarlo por una validación real)
+    // Méthod para validar credenciales (debes cambiarlo por una validación real)
     private fun validarCredenciales(user: String, passwd: String): Boolean {
         return user == "admin" && passwd == "1234" // Aquí puedes implementar validación con una base de datos
     }
