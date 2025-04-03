@@ -43,7 +43,7 @@ class Iniciogerente : AppCompatActivity() {
                 Toast.makeText(this, "Por favor, ingrese usuario y contraseña", Toast.LENGTH_SHORT).show()
             } else {
                 validarCredenciales(user, passwd)
-                Toast.makeText(this, "Has ingresado como gerente!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Ha ingresado como gerente!", Toast.LENGTH_SHORT).show()
             }
         }
 

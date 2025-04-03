@@ -47,7 +47,7 @@ class Iniciosessionus : AppCompatActivity() {
 
     }
 
-    // Méthod para validar credenciales
+    // Méthod para la validación de las credenciales
     private fun validarCredenciales(user: String, passw: String): Boolean {
         return user == "user" && passw == "1234" // Aquí puedes implementar validación con una base de datos
     }
