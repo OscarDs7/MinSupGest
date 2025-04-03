@@ -66,6 +66,7 @@ class Iniciosessionus : AppCompatActivity() {
                     finish() // Cerrar esta actividad
                 } else {
                     Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
+                    password.text.clear() //borrar contenido de la caja
                 }
             }
             .addOnFailureListener { e ->
