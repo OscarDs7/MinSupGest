@@ -54,7 +54,7 @@ class Iniciogerente : AppCompatActivity() {
         }
     }
 
-    // Función para autenticación en Firebase
+    // Función para la autenticación en Firebase
     private fun validarCredenciales(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
