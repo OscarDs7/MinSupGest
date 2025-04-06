@@ -12,15 +12,19 @@
         android:id="@+id/imgbStatistics"
         android:layout_width="190dp"
         android:layout_height="110dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="36dp"
         android:background="@color/white"
         android:contentDescription="Estadísticas"
         android:scaleType="fitCenter"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_estadisticas"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck"
+        android:clickable="true"
+        />
+
 
     <TextView
         android:id="@+id/txtStatistics"
@@ -113,4 +117,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgbEmployes" />
+
+    
 </androidx.constraintlayout.widget.ConstraintLayout>
