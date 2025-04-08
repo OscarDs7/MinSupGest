@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.database.FirebaseDatabase
+import android.content.Intent
 
 class MenuAdminActivity : AppCompatActivity() {
     private val db = FirebaseDatabase.getInstance()
@@ -19,6 +20,7 @@ class MenuAdminActivity : AppCompatActivity() {
         precio = 200.00,
         stock = 10
     )
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -30,6 +32,8 @@ class MenuAdminActivity : AppCompatActivity() {
             insets
         }
         guardar = findViewById(R.id.imgbStatistics)
+        val btnAgregarProducto = findViewById<Button>(R.id.btnAgregarProducto)
+
         guardar.setOnClickListener{
             ref.push().setValue(nuevoProducto)
                 .addOnSuccessListener {
@@ -40,8 +44,12 @@ class MenuAdminActivity : AppCompatActivity() {
                 }
             Toast.makeText(this, "funciono", Toast.LENGTH_SHORT).show()
         }
-
+        btnAgregarProducto.setOnClickListener {
+            val intent = Intent(this, AgregarProductoActivity::class.java)
+            startActivity(intent)
+        }
     }
+
     data class Producto(
         val nombre_producto: String = "",
         val precio: Double = 0.0,
