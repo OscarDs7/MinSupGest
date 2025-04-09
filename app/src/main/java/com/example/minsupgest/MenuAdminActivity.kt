@@ -8,32 +8,21 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.google.firebase.database.FirebaseDatabase
-import android.content.Intent
 
 class MenuAdminActivity : AppCompatActivity() {
-   // val statistics = findViewById<ImageButton>(R.id.imgbStatistics)
-    private lateinit var inventary: ImageButton
-    private lateinit var btnAgregarProducto: Button
-    //val recommendations = findViewById<ImageButton>(R.id.imgbComments)
-    //val employees = findViewById<ImageButton>(R.id.imgbEmployes)
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_menu_admin)
-        inventary = findViewById(R.id.imgbInventary)
-        btnAgregarProducto = findViewById(R.id.btnAgregarProducto)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
 
-        //Eventos listener
-        inventary.setOnClickListener {
-            val intent = Intent(this@MenuAdminActivity, InventarioActivity::class.java)
-            startActivity(intent)
-        }
-        btnAgregarProducto.setOnClickListener {
-            val intent = Intent(this@MenuAdminActivity, AgregarProductoActivity::class.java)
-            startActivity(intent)
-        }
+
     }
+
 }
