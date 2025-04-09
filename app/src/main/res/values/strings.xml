@@ -6,8 +6,9 @@
     <!-- Inventario -->
     <string name="title_inventary">Inventario</string>
     <string name="nombre_prod">Producto</string>
-    <string name="precio_prod">Precio</string>
-    <string name="cantidad_prod">Cantidad</string>
+    <string name="precio_emp">Precio</string>
+    <string name="precio_prov">Proveedor</string>
+    <string name="cantidad_prod">Stock</string>
     <string name="descripcion_prod">Descripción</string>
     <!-- CardView -->
     <string name="unidades">Unidades</string>

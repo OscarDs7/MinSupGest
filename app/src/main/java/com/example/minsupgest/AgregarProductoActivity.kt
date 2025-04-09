@@ -5,10 +5,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FirebaseFirestore
 
 class AgregarProductoActivity : AppCompatActivity() {
-
     private lateinit var etNombre: EditText
     private lateinit var etPrecio: EditText
     private lateinit var etPrecioProveedor: EditText
@@ -25,8 +24,8 @@ class AgregarProductoActivity : AppCompatActivity() {
         etStock = findViewById(R.id.etStock)
         btnGuardar = findViewById(R.id.btnGuardar)
 
-        val db = FirebaseDatabase.getInstance()
-        val ref = db.getReference("productos")
+        val db = FirebaseFirestore.getInstance()
+        val productosRef = db.collection("productos")
 
         btnGuardar.setOnClickListener {
             val nombre = etNombre.text.toString().trim()
@@ -37,8 +36,14 @@ class AgregarProductoActivity : AppCompatActivity() {
             if (nombre.isEmpty() || precio == null || precioProveedor == null || stock == null) {
                 Toast.makeText(this, "Por favor llena todos los campos correctamente", Toast.LENGTH_SHORT).show()
             } else {
-                val producto = Producto(nombre, precio, precioProveedor, stock)
-                ref.push().setValue(producto)
+                val producto = hashMapOf(
+                    "nombre_prod" to nombre,
+                    "precio_emp" to precio,
+                    "precio_prov" to precioProveedor,
+                    "stock" to stock
+                )
+                // Se agrega el producto
+                productosRef.add(producto)
                     .addOnSuccessListener {
                         Toast.makeText(this, "Producto guardado exitosamente", Toast.LENGTH_SHORT).show()
                         etNombre.text.clear()
@@ -46,17 +51,15 @@ class AgregarProductoActivity : AppCompatActivity() {
                         etPrecioProveedor.text.clear()
                         etStock.text.clear()
                     }
+                    //Marca un error en caso de que no se guarde
                     .addOnFailureListener { e ->
                         Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
                     }
-            }
-        }
-    }
+            }//else
 
-    data class Producto(
-        val nombre_producto: String = "",
-        val precio: Double = 0.0,
-        val precio_proveedor: Double = 0.0,
-        val stock: Int = 0
-    )
-}
+        }//btnGuardar
+
+    }//onCreate
+
+}//class
+

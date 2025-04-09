@@ -10,6 +10,8 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidUserException
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 
 class Iniciogerente : AppCompatActivity() {
     private lateinit var gerente: EditText
@@ -64,21 +66,22 @@ class Iniciogerente : AppCompatActivity() {
                 ingresar.isEnabled = true // Volver a habilitar el botón
 
                 if (task.isSuccessful) {
+                    val intent = Intent(this@Iniciogerente, MenuAdminActivity::class.java)
+                    startActivity(intent)
+                    finish()
+
                     Toast.makeText(this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show()
 
                     // Limpiar los campos de texto
                     gerente.text.clear()
                     contrasena.text.clear()
-
-                    val intent = Intent(this@Iniciogerente, MenuAdminActivity::class.java)
-                    startActivity(intent)
-                    finish()
                 } else {
-                    val errorMessage = when (task.exception?.message) {
-                        "There is no user record corresponding to this identifier." -> "El usuario no existe."
-                        "The password is invalid or the user does not have a password." -> "Contraseña incorrecta."
-                        else -> "Error: ${task.exception?.message}"
+                    val errorMessage = when (task.exception) {
+                        is FirebaseAuthInvalidUserException -> "El usuario no existe."
+                        is FirebaseAuthInvalidCredentialsException -> "Contraseña incorrecta."
+                        else -> "Error al iniciar sesión: ${task.exception?.localizedMessage}"
                     }
+
                     Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
 
                     // Limpiar solo el campo de contraseña (pero mantener el usuario para que no lo reescriba)

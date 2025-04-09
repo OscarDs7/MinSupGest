@@ -1,42 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainAgregarProducto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
-    android:background="#2FC8E2">
+    android:background="#2FC8E2"
+    android:backgroundTint="#00BCD4"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/txtAgregar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="168dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="161dp"
+        android:background="@drawable/cuadro_grande"
+        android:backgroundTint="#03A9F4"
+        android:text="Agregar Producto"
+        android:textColor="@color/white"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/etNombre"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:hint="Nombre del producto"
-        android:textSize="20dp"
-        android:textColor="@color/black"
         android:inputType="textPersonName"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/black"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="32dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtAgregar" />
 
     <EditText
         android:id="@+id/etPrecio"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:hint="Precio"
-        android:textSize="20dp"
-        android:textColor="@color/black"
         android:inputType="numberDecimal"
-        app:layout_constraintTop_toBottomOf="@id/etNombre"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/black"
+        android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etNombre" />
 
     <EditText
         android:id="@+id/etPrecioProveedor"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:hint="Precio proveedor"
         android:inputType="numberDecimal"
         android:textColor="@color/black"
@@ -44,13 +64,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPrecio"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/etPrecio" />
 
     <EditText
         android:id="@+id/etStock"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:hint="Stock"
         android:inputType="number"
         android:textColor="@color/black"
@@ -58,13 +78,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPrecioProveedor"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/etPrecioProveedor" />
 
     <Button
         android:id="@+id/btnGuardar"
         android:layout_width="200dp"
-        android:layout_height="60dp"
+        android:layout_height="65dp"
         android:layout_marginTop="112dp"
         android:text="Guardar producto"
         android:textSize="18dp"

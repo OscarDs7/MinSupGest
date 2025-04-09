@@ -59,9 +59,8 @@ class Iniciosessionus : AppCompatActivity() {
                 //Si hay documentos / registros dentro de la colección que valide y luego te redirija
                 if (!documents.isEmpty) {
                     Toast.makeText(this, "Bienvenido ${user}!", Toast.LENGTH_SHORT).show()
-
                     // Redirigir al usuario si las credenciales son correctas
-                    val intent = Intent(this@Iniciosessionus, RegistrarUsuarioActivity::class.java)
+                    val intent = Intent(this@Iniciosessionus, MenuEmpleadoActivity::class.java)
                     startActivity(intent)
                     finish() // Cerrar esta actividad
                 } else {

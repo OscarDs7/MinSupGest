@@ -8,96 +8,107 @@
     android:background="#FF54A4D6"
     tools:context=".InventarioActivity">
 
-    <TextView
-        android:id="@+id/txtInventary"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/button"
-        android:text="@string/title_inventary"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        android:textStyle="bold"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="380dp"
-        android:layout_height="355dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="1dp"
-        android:background="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtInventary">
-
-        <TableRow
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/txtProducto"
+                android:id="@+id/txtInventary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#2196F3"
-                android:padding="15dp"
-                android:text="@string/nombre_prod"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                android:layout_marginTop="24dp"
+                android:background="@drawable/button"
+                android:text="@string/title_inventary"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:translationX="140dp" />
 
-            <TextView
-                android:id="@+id/txtDescrip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#2196F3"
-                android:padding="15dp"
-                android:text="@string/descripcion_prod"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+            <TableLayout
+                android:id="@+id/tblDatos"
+                android:layout_width="match_parent"
+                android:layout_height="380dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="1dp"
+                android:background="@color/white">
 
-            <TextView
-                android:id="@+id/txtPrecio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#2196F3"
-                android:padding="15dp"
-                android:text="@string/precio_prod"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/txtCantidad"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#2196F3"
-                android:padding="15dp"
-                android:text="@string/cantidad_prod"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-        </TableRow>
+                    <TextView
+                        android:id="@+id/txtProducto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#2196F3"
+                        android:padding="22dp"
+                        android:text="@string/nombre_prod"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+                    <TextView
+                        android:id="@+id/txtPrecio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#2196F3"
+                        android:padding="22dp"
+                        android:text="@string/precio_emp"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
-    </TableLayout>
+                    <TextView
+                        android:id="@+id/txtCantidad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#2196F3"
+                        android:padding="22dp"
+                        android:text="@string/precio_prov"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/txtAction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#2196F3"
+                        android:padding="22dp"
+                        android:text="@string/cantidad_prod"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProducto"
         android:layout_width="0dp"
         android:layout_height="300dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="16dp"
         android:background="#3F51B5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        app:layout_constraintTop_toBottomOf="@+id/tblDatos"
+        tools:ignore="NotSibling"
         tools:itemCount="1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

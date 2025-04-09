@@ -12,47 +12,28 @@ import com.google.firebase.database.FirebaseDatabase
 import android.content.Intent
 
 class MenuAdminActivity : AppCompatActivity() {
-    private val db = FirebaseDatabase.getInstance()
-    val ref = db.getReference("productos")
-    private lateinit var guardar: ImageButton
-    val nuevoProducto = Producto(
-        nombre_producto = "peras",
-        precio = 200.00,
-        stock = 10
-    )
+   // val statistics = findViewById<ImageButton>(R.id.imgbStatistics)
+    private lateinit var inventary: ImageButton
+    private lateinit var btnAgregarProducto: Button
+    //val recommendations = findViewById<ImageButton>(R.id.imgbComments)
+    //val employees = findViewById<ImageButton>(R.id.imgbEmployes)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_menu_admin)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
-        guardar = findViewById(R.id.imgbStatistics)
-        val btnAgregarProducto = findViewById<Button>(R.id.btnAgregarProducto)
+        inventary = findViewById(R.id.imgbInventary)
+        btnAgregarProducto = findViewById(R.id.btnAgregarProducto)
 
-        guardar.setOnClickListener{
-            ref.push().setValue(nuevoProducto)
-                .addOnSuccessListener {
-                    Toast.makeText(this, "Producto guardado correctamente", Toast.LENGTH_SHORT).show()
-                }
-                .addOnFailureListener { e ->
-                    Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
-                }
-            Toast.makeText(this, "funciono", Toast.LENGTH_SHORT).show()
+        //Eventos listener
+        inventary.setOnClickListener {
+            val intent = Intent(this@MenuAdminActivity, InventarioActivity::class.java)
+            startActivity(intent)
         }
         btnAgregarProducto.setOnClickListener {
-            val intent = Intent(this, AgregarProductoActivity::class.java)
+            val intent = Intent(this@MenuAdminActivity, AgregarProductoActivity::class.java)
             startActivity(intent)
         }
     }
-
-    data class Producto(
-        val nombre_producto: String = "",
-        val precio: Double = 0.0,
-        val stock: Int = 0
-    )
 }
