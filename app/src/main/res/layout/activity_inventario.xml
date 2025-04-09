@@ -35,7 +35,7 @@
 
             <TableLayout
                 android:id="@+id/tblDatos"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="380dp"
                 android:layout_marginStart="1dp"
                 android:layout_marginTop="10dp"
@@ -90,10 +90,6 @@
                         android:textSize="16sp"
                         android:textStyle="bold" />
                 </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
 
             </TableLayout>
         </LinearLayout>

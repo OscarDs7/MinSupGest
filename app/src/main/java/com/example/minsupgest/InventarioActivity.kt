@@ -21,4 +21,6 @@ class InventarioActivity : AppCompatActivity() {
         tableLayout = findViewById(R.id.tblDatos)
     }
 
+
+
 }
