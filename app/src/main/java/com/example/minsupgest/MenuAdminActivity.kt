@@ -12,8 +12,12 @@ import com.google.firebase.database.FirebaseDatabase
 import android.content.Intent
 
 class MenuAdminActivity : AppCompatActivity() {
+   // val statistics = findViewById<ImageButton>(R.id.imgbStatistics)
     private lateinit var inventary: ImageButton
     private lateinit var btnAgregarProducto: Button
+    //val recommendations = findViewById<ImageButton>(R.id.imgbComments)
+    //val employees = findViewById<ImageButton>(R.id.imgbEmployes)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
