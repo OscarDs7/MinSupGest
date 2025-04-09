@@ -18,13 +18,13 @@
             android:layout_marginTop="24dp"
             android:text="@string/nombre_prod"
             android:textColor="@color/white"
-            android:textSize="30sp"
+            android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imgProducto"
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:layout_marginStart="21dp"
@@ -34,37 +34,37 @@
             tools:srcCompat="@drawable/product" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imgCode"
             android:layout_width="129dp"
             android:layout_height="120dp"
             android:layout_marginStart="21dp"
             android:layout_marginTop="12dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/imgProducto"
             app:srcCompat="@drawable/barras" />
 
         <TextView
-            android:id="@+id/txtUnidades"
+            android:id="@+id/txtPrize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
-            android:text="@string/unidades"
+            android:text="Precio"
             android:textColor="@color/white"
-            android:textSize="24sp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/imgProducto"
             app:layout_constraintTop_toBottomOf="@+id/txtProd" />
 
         <TextView
-            android:id="@+id/txtVendidas"
+            android:id="@+id/txtStock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="@string/vendidas"
+            android:text="Unidades"
             android:textColor="@color/white"
-            android:textSize="24sp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/txtUnidades" />
+            app:layout_constraintStart_toEndOf="@+id/imgProducto"
+            app:layout_constraintTop_toBottomOf="@+id/txtPrize" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

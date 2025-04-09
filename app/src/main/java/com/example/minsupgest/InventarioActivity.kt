@@ -4,18 +4,22 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.Gravity
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TableLayout
 import android.widget.TableRow
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.*
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
 
 class InventarioActivity : AppCompatActivity() {
-
+    //Instancias a componentes gráficos
     private lateinit var tableLayout: TableLayout
-    private lateinit var db: FirebaseFirestore
+    private lateinit var db: FirebaseFirestore //instancia a la clase Firebase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +32,7 @@ class InventarioActivity : AppCompatActivity() {
 
         // Llamada a la función
         mostrarDatos()
+
     }//onCreate
 
     private fun mostrarDatos() {
@@ -74,6 +79,10 @@ class InventarioActivity : AppCompatActivity() {
             fila.addView(tv)
         }
         tableLayout.addView(fila)
+
+        fila.setOnClickListener {
+            mostrarDetalle(nombre, precio_emp, cantidad, "") // puedes pasar una URL si tuvieras una imagen de Firebase, por ahora usa la imagen local
+        }
     }//agregarFila
 
     private fun crearTextView(texto: String, isHeader: Boolean = false): TextView {
@@ -87,6 +96,30 @@ class InventarioActivity : AppCompatActivity() {
             }
         }
     }//crearTextView
+
+
+    private fun mostrarDetalle(nombre: String, precio: String, stock: String, imagenUrl: String) {
+        val contenedor = findViewById<LinearLayout>(R.id.rvProducto)
+        contenedor.removeAllViews()
+
+        val cardView = layoutInflater.inflate(R.layout.card_view_prod, null) as CardView
+
+        val imgDetalle = cardView.findViewById<ImageView>(R.id.imgProducto)
+        val Nombre = cardView.findViewById<TextView>(R.id.txtProd)
+        val Precio = cardView.findViewById<TextView>(R.id.txtPrize)
+        val Stock = cardView.findViewById<TextView>(R.id.txtStock)
+
+        Nombre.text = "$nombre"
+        Precio.text = "$precio"
+        Stock.text = "$stock"
+
+        // Imagen local por ahora
+        imgDetalle.setImageResource(R.drawable.product)
+
+        contenedor.addView(cardView)
+    }
+
+
 
 
 }
