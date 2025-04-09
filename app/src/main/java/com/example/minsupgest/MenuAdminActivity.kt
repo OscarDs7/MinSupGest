@@ -1,6 +1,5 @@
 package com.example.minsupgest
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
@@ -9,31 +8,32 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.database.FirebaseDatabase
+import android.content.Intent
 
 class MenuAdminActivity : AppCompatActivity() {
-private  lateinit var  inventary: ImageButton
-private lateinit var  btnAgregarProducto:Button
-    override fun onCreate(savedInstanceState: Bundle?) {
+   // val statistics = findViewById<ImageButton>(R.id.imgbStatistics)
+    private lateinit var inventary: ImageButton
+    private lateinit var btnAgregarProducto: Button
+    //val recommendations = findViewById<ImageButton>(R.id.imgbComments)
+    //val employees = findViewById<ImageButton>(R.id.imgbEmployes)
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_menu_admin)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        inventary = findViewById(R.id.imgbInventary)
+        btnAgregarProducto = findViewById(R.id.btnAgregarProducto)
+
+        //Eventos listener
+        inventary.setOnClickListener {
+            val intent = Intent(this@MenuAdminActivity, InventarioActivity::class.java)
+            startActivity(intent)
         }
-    inventary = findViewById(R.id.imgbInventary)
-    btnAgregarProducto = findViewById(R.id.btnAgregarProducto)
-    inventary.setOnClickListener{
-        val  intent = Intent(this@MenuAdminActivity,InventarioActivity::class.java)
-        startActivity(intent)
+        btnAgregarProducto.setOnClickListener {
+            val intent = Intent(this@MenuAdminActivity, AgregarProductoActivity::class.java)
+            startActivity(intent)
+        }
     }
-   btnAgregarProducto.setOnClickListener {
-       val  intent = Intent(this@MenuAdminActivity,AgregarProductoActivity::class.java)
-       startActivity(intent)
-   }
-
-    }
-
 }
