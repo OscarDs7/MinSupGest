@@ -11,8 +11,6 @@ import android.widget.TableRow
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.*
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -35,12 +33,13 @@ class InventarioActivity : AppCompatActivity() {
 
     }//onCreate
 
+    // Función para mostrar los datos dentro de la tabla
     private fun mostrarDatos() {
         db.collection("productos")
             .get()
             .addOnSuccessListener { result ->
                // agregarEncabezado()
-
+                //Recorremos todos los documentos y extraemos sus campos
                 for (document in result) {
                     val nombre = document.getString("nombre_prod") ?: ""
                     val precio_empresa  = document.getDouble("precio_emp")?.toString() ?: "0.0"

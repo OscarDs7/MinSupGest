@@ -6,9 +6,6 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.google.firebase.database.FirebaseDatabase
 import android.content.Intent
 
 class MenuAdminActivity : AppCompatActivity() {
