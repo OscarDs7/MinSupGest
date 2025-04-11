@@ -109,8 +109,8 @@ class InventarioActivity : AppCompatActivity() {
         val Stock = cardView.findViewById<TextView>(R.id.txtStock)
 
         Nombre.text = "$nombre"
-        Precio.text = "$precio"
-        Stock.text = "$stock"
+        Precio.text = "Precio Unitario:\n$$precio"
+        Stock.text = "Cantidad:\n$stock pzas"
 
         // Imagen local por ahora
         imgDetalle.setImageResource(R.drawable.product)

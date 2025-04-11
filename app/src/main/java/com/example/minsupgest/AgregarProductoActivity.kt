@@ -46,10 +46,7 @@ class AgregarProductoActivity : AppCompatActivity() {
                 productosRef.add(producto)
                     .addOnSuccessListener {
                         Toast.makeText(this, "Producto guardado exitosamente", Toast.LENGTH_SHORT).show()
-                        etNombre.text.clear()
-                        etPrecio.text.clear()
-                        etPrecioProveedor.text.clear()
-                        etStock.text.clear()
+                        limpiarCampos()
                     }
                     //Marca un error en caso de que no se guarde
                     .addOnFailureListener { e ->
@@ -60,6 +57,14 @@ class AgregarProductoActivity : AppCompatActivity() {
         }//btnGuardar
 
     }//onCreate
+
+    private fun limpiarCampos(){
+        etNombre.text.clear()
+        etPrecio.text.clear()
+        etPrecioProveedor.text.clear()
+        etStock.text.clear()
+        etNombre.requestFocus() //enfoque al primer campo
+    }
 
 }//class
 
