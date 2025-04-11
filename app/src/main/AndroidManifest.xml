@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"
+        tools:ignore="SelectedPhotoAccess" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -15,11 +14,11 @@
         android:theme="@style/Theme.MinSupGest"
         tools:targetApi="31">
         <activity
-            android:name=".ventasActiviti"
+            android:name=".Iniciosessionus"
             android:exported="false" />
         <activity
-            android:name=".AgregarProductoActivity"
-            android:exported="false" />
+            android:name=".Iniciogerente"
+            android:exported="true"/>
         <activity
             android:name=".Selecionusuario"
             android:exported="true">
@@ -30,26 +29,31 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Iniciosessionus"
-            android:exported="false" />
-        <activity
-            android:name=".Iniciogerente"
-            android:exported="false" />
-        <activity
-            android:name=".MenuEmpleadoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MenuAdminActivity"
-            android:exported="false" />
-        <activity
             android:name=".RegistrarUsuarioActivity"
-            android:exported="true">
+            android:exported="false">
         </activity>
         <activity
             android:name=".InventarioActivity"
-            android:exported="false" />
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".MenuAdminActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".MenuEmpleadoActivity"
+            android:exported="false">
+        </activity>
         <activity
             android:name=".MainActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".AgregarProductoActivity"
+            android:exported="false">
+        </activity>
+        <activity
+            android:name=".ventasActiviti"
             android:exported="false">
         </activity>
     </application>
