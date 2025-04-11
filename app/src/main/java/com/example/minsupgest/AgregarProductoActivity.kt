@@ -37,7 +37,12 @@ class AgregarProductoActivity : AppCompatActivity() {
             // Validamos que no se encuentre un campo vacío
             if (nombre.isEmpty() || precio == null || precioProveedor == null || stock == null) {
                 Toast.makeText(this, "Por favor llena todos los campos correctamente", Toast.LENGTH_SHORT).show()
-            } else {
+            } else if (precio <= 0 || precioProveedor <= 0){
+                Toast.makeText(this, "No es permitido un precio de $0 o menor",
+                    Toast.LENGTH_SHORT).show()
+            }
+            else
+            {
                 // Enviamos cada dato en el campo correspondiente dentro de la tabla
                 val producto = hashMapOf(
                     "nombre_prod" to nombre,
