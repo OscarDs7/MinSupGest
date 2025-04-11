@@ -24,18 +24,21 @@ class AgregarProductoActivity : AppCompatActivity() {
         etStock = findViewById(R.id.etStock)
         btnGuardar = findViewById(R.id.btnGuardar)
 
-        val db = FirebaseFirestore.getInstance()
-        val productosRef = db.collection("productos")
+        val db = FirebaseFirestore.getInstance() //instancia a la BD
+        val productosRef = db.collection("productos") //Acceso a la colección de los productos
 
+        //Evento de guardar el producto
         btnGuardar.setOnClickListener {
+            //Extraemos los datos de las cajas de texto
             val nombre = etNombre.text.toString().trim()
             val precio = etPrecio.text.toString().toDoubleOrNull()
             val precioProveedor = etPrecioProveedor.text.toString().toDoubleOrNull()
             val stock = etStock.text.toString().toIntOrNull()
-
+            // Validamos que no se encuentre un campo vacío
             if (nombre.isEmpty() || precio == null || precioProveedor == null || stock == null) {
                 Toast.makeText(this, "Por favor llena todos los campos correctamente", Toast.LENGTH_SHORT).show()
             } else {
+                // Enviamos cada dato en el campo correspondiente dentro de la tabla
                 val producto = hashMapOf(
                     "nombre_prod" to nombre,
                     "precio_emp" to precio,
