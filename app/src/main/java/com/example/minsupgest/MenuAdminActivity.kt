@@ -13,6 +13,7 @@ class MenuAdminActivity : AppCompatActivity() {
     private lateinit var inventary: ImageButton
     private lateinit var btnAgregarProducto: Button
     private lateinit var btnvender:Button
+    private lateinit var ibtnEmpleados: ImageButton
     //val recommendations = findViewById<ImageButton>(R.id.imgbComments)
     //val employees = findViewById<ImageButton>(R.id.imgbEmployes)
 
@@ -24,6 +25,8 @@ class MenuAdminActivity : AppCompatActivity() {
         inventary = findViewById(R.id.imgbInventary)
         btnAgregarProducto = findViewById(R.id.btnAgregarProducto)
         btnvender = findViewById(R.id.btnVenta)
+        ibtnEmpleados = findViewById(R.id.imgbEmployes)
+
 
         //Eventos listener
         inventary.setOnClickListener {
@@ -36,6 +39,10 @@ class MenuAdminActivity : AppCompatActivity() {
         }
         btnvender.setOnClickListener {
             val intent = Intent(this@MenuAdminActivity,ventasActiviti::class.java)
+            startActivity(intent)
+        }
+        ibtnEmpleados.setOnClickListener {
+            val intent = Intent(this@MenuAdminActivity, ListadoUsuariosActivity::class.java)
             startActivity(intent)
         }
     }
