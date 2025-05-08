@@ -32,8 +32,8 @@ class ventasActiviti : AppCompatActivity() {
         cantidad = findViewById(R.id.edtCantidad)
         vender = findViewById(R.id.btnventas)
         val db = FirebaseFirestore.getInstance()
-        val productosVRef = db.collection("ventas")
-        val productosRef = db.collection("productos")
+        //val productosVRef = db.collection("ventas")
+        //val productosRef = db.collection("productos")
 
         vender.setOnClickListener {
             val idBuscada = idproducto.text.toString()
@@ -72,9 +72,11 @@ class ventasActiviti : AppCompatActivity() {
                             .update("stock", totalpro)
                             .addOnSuccessListener {
                                 Toast.makeText(this, "Producto vendido", Toast.LENGTH_SHORT).show()
+                                limpiarCampos() //llamada a la función de limpiar campos para evitar duplicados de ventas
                             }
                             .addOnFailureListener { e ->
                                 Toast.makeText(this, "Error al vender", Toast.LENGTH_SHORT).show()
+                                limpiarCampos() //llamada a la función de limpiar campos para evitar duplicados de ventas
                             }
 
                         // Consultar si ya existe el producto en la colección "ventas"
@@ -134,6 +136,12 @@ class ventasActiviti : AppCompatActivity() {
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Error en la conexión", Toast.LENGTH_SHORT).show()
                 }
-        }
+        } //evento-vender
+    }//onCreate
+
+    fun limpiarCampos(){
+        idproducto.text.clear()
+        cantidad.text.clear()
+        idproducto.requestFocus()
     }
 }

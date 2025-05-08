@@ -6,8 +6,10 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class EmpleadoAdapter(private val empleados: List<Empleado>) :
-    RecyclerView.Adapter<EmpleadoAdapter.EmpleadoViewHolder>() {
+class EmpleadoAdapter(
+    private val empleados: List<Empleado>,
+    private val onItemClick: (Empleado) -> Unit
+) : RecyclerView.Adapter<EmpleadoAdapter.EmpleadoViewHolder>() {
 
     class EmpleadoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val tvNombre: TextView = view.findViewById(R.id.tvNombre)
@@ -24,7 +26,13 @@ class EmpleadoAdapter(private val empleados: List<Empleado>) :
         val empleado = empleados[position]
         holder.tvNombre.text = empleado.nombre
         holder.tvApellido.text = empleado.apellido
+
+        holder.itemView.setOnClickListener {
+            onItemClick(empleado) // acción al hacer clic
+        }
     }
 
     override fun getItemCount(): Int = empleados.size
 }
+
+
