@@ -58,6 +58,10 @@
         <activity
             android:name=".ventasActiviti"
             android:exported="false"></activity>
+        <activity
+            android:name=".PerfilEmpleadoActivity"
+            android:exported="false" />
+
     </application>
 
 </manifest>
