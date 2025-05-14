@@ -63,13 +63,13 @@
         app:layout_constraintTop_toBottomOf="@+id/edtApellido" />
 
     <EditText
-        android:id="@+id/edtTelefono"
+        android:id="@+id/edtCorreo"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:ems="10"
-        android:hint="Teléfono"
-        android:inputType="phone"
+        android:hint="Correo"
+        android:inputType="text"
         android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +84,7 @@
         android:backgroundTint="#132CB6"
         android:text="Agregar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtTelefono" />
+        app:layout_constraintTop_toBottomOf="@+id/edtCorreo" />
 
     <Button
         android:id="@+id/btnExit"
@@ -95,6 +95,6 @@
         android:backgroundTint="#DB2F2F"
         android:text="Regresar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtTelefono" />
+        app:layout_constraintTop_toBottomOf="@+id/edtCorreo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

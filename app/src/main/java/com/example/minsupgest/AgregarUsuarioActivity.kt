@@ -15,7 +15,7 @@ class AgregarUsuarioActivity : AppCompatActivity() {
     private lateinit var nombre: EditText
     private lateinit var apellido: EditText
     private lateinit var contrasena: EditText
-    private lateinit var telefono: EditText
+    private lateinit var correo: EditText
     private lateinit var btnAgregar: Button
     private lateinit var btnSalir: Button
 
@@ -29,7 +29,7 @@ class AgregarUsuarioActivity : AppCompatActivity() {
         nombre = findViewById(R.id.edtNombre)
         apellido = findViewById(R.id.edtApellido)
         contrasena = findViewById(R.id.edtContrasena)
-        telefono = findViewById(R.id.edtTelefono)
+        correo = findViewById(R.id.edtCorreo)
         btnAgregar = findViewById(R.id.btnAgregarUser)
         btnSalir = findViewById(R.id.btnExit)
 
@@ -37,41 +37,63 @@ class AgregarUsuarioActivity : AppCompatActivity() {
         val empleadosRef = db.collection("empleados") //Acceso a la colección de los productos
 
         btnAgregar.setOnClickListener {
-            //Extraemos los datos de las cajas de texto
-            val nombre = nombre.text.toString().trim()
-            val apellido = apellido.text.toString().trim()
-            val contrasena = contrasena.text.toString().trim()
-            val telefono = telefono.text.toString().toIntOrNull()
+            val nombreEmpleado = nombre.text.toString().trim()
+            val apellidoEmpleado = apellido.text.toString().trim()
+            val contrasenaEmpleado = contrasena.text.toString().trim()
+            val correoEmpleado = correo.text.toString().trim()
 
-            //Validamos que no se encuentre un campo vacío
-            if(nombre.isEmpty() || apellido.isEmpty() || contrasena.isEmpty() || telefono == null){
-                Toast.makeText(this, "Favor de llenar los campos", Toast.LENGTH_SHORT).show()
-            }
-            else{
-                // Enviamos cada dato en el campo correspondiente dentro de la tabla
-                val empleado = hashMapOf(
-                    "nombre" to nombre,
-                    "apellido" to apellido,
-                    "contrasena" to contrasena,
-                    "telefono" to telefono
-                )
-                // Se agrega el producto
-                empleadosRef.add(empleado)
-                    .addOnSuccessListener {
-                        Toast.makeText(this, "Empleado guardado exitosamente", Toast.LENGTH_SHORT).show()
-                        limpiarCampos()
-                    }
-                    //Marca un error en caso de que no se guarde
-                    .addOnFailureListener { e ->
-                        Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
-                    }
-            }//else
-        }//btn-agregar
+            val emailRegex = Regex("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[a-z]{2,6}$") //formato de correo válido
+
+            when {
+                nombreEmpleado.isEmpty() || apellidoEmpleado.isEmpty() || contrasenaEmpleado.isEmpty() || correoEmpleado.isEmpty() -> {
+                    Toast.makeText(this, "Favor de llenar todos los campos", Toast.LENGTH_SHORT).show()
+                }
+
+                contrasenaEmpleado.length < 4 -> {
+                    Toast.makeText(this, "La contraseña debe tener al menos 4 caracteres", Toast.LENGTH_SHORT).show()
+                }
+
+                !correoEmpleado.matches(emailRegex) -> {
+                    Toast.makeText(this, "Correo no válido", Toast.LENGTH_SHORT).show()
+                }
+
+                else -> {
+                    // Verificar si el correo ya existe
+                    empleadosRef.whereEqualTo("correo", correoEmpleado).get()
+                        .addOnSuccessListener { documents ->
+                            if (documents.isEmpty) {
+                                // Si no existe, lo agregamos
+                                val empleado = hashMapOf(
+                                    "nombre" to nombreEmpleado,
+                                    "apellido" to apellidoEmpleado,
+                                    "contrasena" to contrasenaEmpleado,
+                                    "correo" to correoEmpleado
+                                )
+
+                                empleadosRef.add(empleado)
+                                    .addOnSuccessListener {
+                                        Toast.makeText(this, "Empleado guardado exitosamente", Toast.LENGTH_SHORT).show()
+                                        limpiarCampos()
+                                    }
+                                    .addOnFailureListener { e ->
+                                        Toast.makeText(this, "Error al guardar: ${e.message}", Toast.LENGTH_SHORT).show()
+                                    }
+                            } else {
+                                Toast.makeText(this, "Ya existe un empleado con ese correo", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                        .addOnFailureListener { e ->
+                            Toast.makeText(this, "Error al verificar duplicado: ${e.message}", Toast.LENGTH_SHORT).show()
+                        }
+                } //else-insertar
+            } //when
+        } //btnAgregar
 
         btnSalir.setOnClickListener {
             val intent = Intent(this@AgregarUsuarioActivity, ListadoUsuariosActivity::class.java)
             startActivity(intent)
         }
+
     }//onCreate
 
     //Evento limpiarcampos()
@@ -79,7 +101,7 @@ class AgregarUsuarioActivity : AppCompatActivity() {
         nombre.text.clear()
         apellido.text.clear()
         contrasena.text.clear()
-        telefono.text.clear()
+        correo.text.clear()
         nombre.requestFocus() //enfoque al primer campo
     }
 }

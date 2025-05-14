@@ -34,40 +34,59 @@ class AgregarProductoActivity : AppCompatActivity() {
 
         //Evento de guardar el producto
         btnGuardar.setOnClickListener {
-            //Extraemos los datos de las cajas de texto
+            // Extraemos y convertimos los valores de los campos
             val nombre = etNombre.text.toString().trim()
             val precio = etPrecio.text.toString().toDoubleOrNull()
             val precioProveedor = etPrecioProveedor.text.toString().toDoubleOrNull()
             val stock = etStock.text.toString().toIntOrNull()
-            // Validamos que no se encuentre un campo vacío
-            if (nombre.isEmpty() || precio == null || precioProveedor == null || stock == null) {
-                Toast.makeText(this, "Por favor llena todos los campos correctamente", Toast.LENGTH_SHORT).show()
-            } else if (precio <= 0 || precioProveedor <= 0){
-                Toast.makeText(this, "No es permitido un precio de $0 o menor",
-                    Toast.LENGTH_SHORT).show()
-            }
-            else
-            {
-                // Enviamos cada dato en el campo correspondiente dentro de la tabla
-                val producto = hashMapOf(
-                    "nombre_prod" to nombre,
-                    "precio_emp" to precio,
-                    "precio_prov" to precioProveedor,
-                    "stock" to stock
-                )
-                // Se agrega el producto
-                productosRef.add(producto)
-                    .addOnSuccessListener {
-                        Toast.makeText(this, "Producto guardado exitosamente", Toast.LENGTH_SHORT).show()
-                        limpiarCampos()
-                    }
-                    //Marca un error en caso de que no se guarde
-                    .addOnFailureListener { e ->
-                        Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
-                    }
-            }//else
 
-        }//btnGuardar
+            when {
+                // Validaciones
+                nombre.isEmpty() || precio == null || precioProveedor == null || stock == null -> {
+                    Toast.makeText(this, "Por favor llena todos los campos correctamente", Toast.LENGTH_SHORT).show()
+                }
+
+                precio <= 0 || precioProveedor <= 0 -> {
+                    Toast.makeText(this, "No se permite un precio de $0 o menor", Toast.LENGTH_SHORT).show()
+                }
+
+                stock < 0 -> {
+                    Toast.makeText(this, "El stock no puede ser negativo", Toast.LENGTH_SHORT).show()
+                }
+
+                else -> {
+                    // Verificamos si el producto ya existe
+                    productosRef.whereEqualTo("nombre_prod", nombre).get()
+                        .addOnSuccessListener { documents ->
+                            if (documents.isEmpty) {
+                                // Crear el mapa del producto
+                                val producto = hashMapOf(
+                                    "nombre_prod" to nombre,
+                                    "precio_emp" to precio,
+                                    "precio_prov" to precioProveedor,
+                                    "stock" to stock
+                                )
+
+                                // Guardar en Firestore
+                                productosRef.add(producto)
+                                    .addOnSuccessListener {
+                                        Toast.makeText(this, "Producto guardado exitosamente", Toast.LENGTH_SHORT).show()
+                                        limpiarCampos()
+                                    }
+                                    .addOnFailureListener { e ->
+                                        Toast.makeText(this, "Error al guardar: ${e.message}", Toast.LENGTH_SHORT).show()
+                                    }
+                            } else {
+                                Toast.makeText(this, "Ya existe un producto con ese nombre", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                        .addOnFailureListener { e ->
+                            Toast.makeText(this, "Error al verificar duplicado: ${e.message}", Toast.LENGTH_SHORT).show()
+                        }
+                } //else-insertar datos
+            } //when
+        } //btnGuardar
+
 
         btnRegresar.setOnClickListener {
             onBackPressedDispatcher.onBackPressed() //Regreso a la ventana anterior
