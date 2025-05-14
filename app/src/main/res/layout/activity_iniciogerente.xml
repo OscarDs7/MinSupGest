@@ -111,7 +111,7 @@
         android:layout_x="122dp"
         android:layout_y="131dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/perfil"
+        android:src="@drawable/admin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txttitulo2"
