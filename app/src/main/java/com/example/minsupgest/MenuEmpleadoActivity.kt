@@ -2,9 +2,11 @@ package com.example.minsupgest
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Paint
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +20,7 @@ class MenuEmpleadoActivity : AppCompatActivity() {
     //Instancias
     private lateinit var inventario: ImageButton
     private lateinit var agregar_prod: Button
+    private lateinit var cerrar_sesion: TextView
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,9 +32,12 @@ class MenuEmpleadoActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        //Vinculación
+        //Vinculación a los componentes mediante su id
         inventario = findViewById(R.id.imgbInventary2)
         agregar_prod = findViewById(R.id.btnAgregar)
+        cerrar_sesion = findViewById(R.id.txtRegreso1)
+        //propiedad de subrayado
+        cerrar_sesion.paintFlags = cerrar_sesion.paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
         //Eventos de navegación
         inventario.setOnClickListener {
@@ -41,6 +47,11 @@ class MenuEmpleadoActivity : AppCompatActivity() {
         agregar_prod.setOnClickListener {
             val intent = Intent(this@MenuEmpleadoActivity, AgregarProductoActivity::class.java)
             startActivity(intent)
+        }
+        cerrar_sesion.setOnClickListener {
+            val intent = Intent(this@MenuEmpleadoActivity, Iniciosessionus::class.java)
+            startActivity(intent)
+            Toast.makeText(this@MenuEmpleadoActivity,"Saliste de rol empleado...", Toast.LENGTH_SHORT).show()
         }
     }
 }

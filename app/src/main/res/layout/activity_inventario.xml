@@ -38,7 +38,7 @@
             <TableLayout
                 android:id="@+id/tblDatos"
                 android:layout_width="match_parent"
-                android:layout_height="360dp"
+                android:layout_height="330dp"
                 android:layout_marginStart="1dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="1dp"
@@ -110,5 +110,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tblDatos"
         tools:ignore="NotSibling,SpeakableTextPresentCheck"
-        tools:itemCount="1" />
+        tools:itemCount="1"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

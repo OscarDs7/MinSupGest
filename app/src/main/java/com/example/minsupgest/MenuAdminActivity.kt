@@ -1,5 +1,6 @@
 package com.example.minsupgest
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
@@ -7,6 +8,8 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
+import android.graphics.Paint
+import android.widget.TextView
 
 class MenuAdminActivity : AppCompatActivity() {
    // val statistics = findViewById<ImageButton>(R.id.imgbStatistics)
@@ -14,10 +17,13 @@ class MenuAdminActivity : AppCompatActivity() {
     private lateinit var btnAgregarProducto: Button
     private lateinit var btnvender:Button
     private lateinit var ibtnEmpleados: ImageButton
+    private lateinit var txtRegreso: TextView
+
     //val recommendations = findViewById<ImageButton>(R.id.imgbComments)
     //val employees = findViewById<ImageButton>(R.id.imgbEmployes)
 
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -26,7 +32,9 @@ class MenuAdminActivity : AppCompatActivity() {
         btnAgregarProducto = findViewById(R.id.btnAgregarProducto)
         btnvender = findViewById(R.id.btnVenta)
         ibtnEmpleados = findViewById(R.id.imgbEmployes)
-
+        txtRegreso = findViewById(R.id.txtRegreso)
+        //propiedad de subrayado
+        txtRegreso.paintFlags = txtRegreso.paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
         //Eventos listener
         inventary.setOnClickListener {
@@ -44,6 +52,11 @@ class MenuAdminActivity : AppCompatActivity() {
         ibtnEmpleados.setOnClickListener {
             val intent = Intent(this@MenuAdminActivity, ListadoUsuariosActivity::class.java)
             startActivity(intent)
+        }
+        txtRegreso.setOnClickListener {
+            val intent = Intent(this@MenuAdminActivity, Iniciogerente::class.java)
+            startActivity(intent)
+            Toast.makeText(this@MenuAdminActivity, "Saliendo de rol Gerente...", Toast.LENGTH_SHORT).show()
         }
     }
 }
