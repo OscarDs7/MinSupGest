@@ -8,8 +8,6 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.firestore.FirebaseFirestore
 
 class AgregarUsuarioActivity : AppCompatActivity() {
@@ -33,7 +31,7 @@ class AgregarUsuarioActivity : AppCompatActivity() {
         contrasena = findViewById(R.id.edtContrasena)
         telefono = findViewById(R.id.edtTelefono)
         btnAgregar = findViewById(R.id.btnAgregarUser)
-        btnSalir = findViewById(R.id.btnSalir)
+        btnSalir = findViewById(R.id.btnExit)
 
         val db = FirebaseFirestore.getInstance() //instancia a la BD
         val empleadosRef = db.collection("empleados") //Acceso a la colección de los productos

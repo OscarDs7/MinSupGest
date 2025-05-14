@@ -81,17 +81,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="70dp"
+        android:backgroundTint="#132CB6"
         android:text="Agregar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtTelefono" />
 
     <Button
-        android:id="@+id/btnSalir"
+        android:id="@+id/btnExit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:layout_marginEnd="50dp"
-        android:text="Salir"
+        android:backgroundTint="#DB2F2F"
+        android:text="Regresar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtTelefono" />
 

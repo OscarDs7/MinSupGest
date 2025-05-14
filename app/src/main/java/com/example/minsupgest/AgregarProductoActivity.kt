@@ -1,5 +1,7 @@
 package com.example.minsupgest
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -13,7 +15,9 @@ class AgregarProductoActivity : AppCompatActivity() {
     private lateinit var etPrecioProveedor: EditText
     private lateinit var etStock: EditText
     private lateinit var btnGuardar: Button
+    private lateinit var btnRegresar: Button
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_agregar_producto)
@@ -23,6 +27,7 @@ class AgregarProductoActivity : AppCompatActivity() {
         etPrecioProveedor = findViewById(R.id.etPrecioProveedor)
         etStock = findViewById(R.id.etStock)
         btnGuardar = findViewById(R.id.btnGuardar)
+        btnRegresar = findViewById(R.id.btnRegresar1)
 
         val db = FirebaseFirestore.getInstance() //instancia a la BD
         val productosRef = db.collection("productos") //Acceso a la colección de los productos
@@ -63,6 +68,10 @@ class AgregarProductoActivity : AppCompatActivity() {
             }//else
 
         }//btnGuardar
+
+        btnRegresar.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed() //Regreso a la ventana anterior
+        }
 
     }//onCreate
 
