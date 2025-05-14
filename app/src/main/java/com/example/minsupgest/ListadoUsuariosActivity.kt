@@ -1,5 +1,6 @@
 package com.example.minsupgest
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -18,8 +19,10 @@ class ListadoUsuariosActivity : AppCompatActivity() {
     //Instancias
     private lateinit var empleados: RecyclerView
     private lateinit var agregar: Button
+    private lateinit var regresar: Button
     private lateinit var db: FirebaseFirestore //instancia a la clase Firebase
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -28,6 +31,7 @@ class ListadoUsuariosActivity : AppCompatActivity() {
         //Vinculación a componentes
         empleados = findViewById(R.id.rvEmpleados)
         agregar = findViewById(R.id.btnAddUser)
+        regresar = findViewById(R.id.btnRegresar2)
 
         // Inicialización Firebase
         FirebaseApp.initializeApp(this)
@@ -36,12 +40,19 @@ class ListadoUsuariosActivity : AppCompatActivity() {
         // Llamada a la función
         empleados.layoutManager = LinearLayoutManager(this)
 
+        //Llamada a la función de mostrar empleados
+        mostrarEmpleados()
+
         //Evento Agregar Usuario Nuevo
         agregar.setOnClickListener {
             val intent = Intent(this@ListadoUsuariosActivity, AgregarUsuarioActivity::class.java)
             startActivity(intent)
         }
-        mostrarEmpleados()
+        //Evento Regresar a Menú Gerente
+        regresar.setOnClickListener {
+            val intent = Intent(this@ListadoUsuariosActivity, MenuAdminActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun mostrarEmpleados() {
