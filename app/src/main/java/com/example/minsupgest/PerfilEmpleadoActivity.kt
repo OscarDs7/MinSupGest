@@ -31,7 +31,7 @@ class PerfilEmpleadoActivity : AppCompatActivity() {
 
         idEmpleado = intent.getStringExtra("ID_EMPLEADO") ?: return
 
-        cargarDatos()
+        cargarDatos() //cargamos los datos del empleado
 
         btnEditar.setOnClickListener {
             val actualizacion = mapOf(
