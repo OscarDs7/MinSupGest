@@ -1,6 +1,7 @@
 package com.example.minsupgest
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -16,6 +17,7 @@ class ventasActiviti : AppCompatActivity() {
     private lateinit var idproducto: EditText
     private lateinit var cantidad: EditText
     private lateinit var vender: Button
+    private lateinit var regresar: Button
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,116 +29,113 @@ class ventasActiviti : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
         idproducto = findViewById(R.id.edtidproducto)
         cantidad = findViewById(R.id.edtCantidad)
         vender = findViewById(R.id.btnventas)
+        regresar = findViewById(R.id.btnRegresar3)
+
         val db = FirebaseFirestore.getInstance()
         //val productosVRef = db.collection("ventas")
         //val productosRef = db.collection("productos")
 
         vender.setOnClickListener {
-            val idBuscada = idproducto.text.toString()
+            val idBuscada = idproducto.text.toString().trim()
+            val cantidadVendida = cantidad.text.toString().toIntOrNull()
 
-            // Si el producto no está registrado
-            db.collection("productos").document(idBuscada)
-                .get()
-                .addOnSuccessListener { documento ->
-                    if (documento.exists()) {
-                        val Idpro = documento.id
-                        val stocks = documento.getLong("stock") ?: 0
-                        val Nombre = documento.getString("nombre_prod")
-                        val precioventa = documento.getDouble("precio_emp") ?: 0.0
-                        val precioprovedor = documento.getDouble("precio_prov") ?: 0.0
-                        val vendido = cantidad.text.toString().toInt()
-                        val ganancia = precioventa - precioprovedor
-                        val total = ganancia * vendido
-                        var totalpro = stocks - vendido
-                        if (totalpro < 0) {
-                            totalpro = 0
-                            Toast.makeText(this, "Se vendió exceso de producto", Toast.LENGTH_SHORT).show()
-                        }
+            when {
+                idBuscada.isEmpty() || cantidadVendida == null -> {
+                    Toast.makeText(this, "Llena todos los campos correctamente", Toast.LENGTH_SHORT).show()
+                }
 
-                        val nuevoDoc = hashMapOf(
-                            "cantidad_ventas" to vendido,
-                            "idproducto" to Idpro,
-                            "nombre_prod" to Nombre,
-                            "precio_emp" to precioventa,
-                            "precio_prov" to precioprovedor,
-                            "total_ganancia" to total
-                        )
+                cantidadVendida <= 0 -> {
+                    Toast.makeText(this, "La cantidad debe ser mayor a 0", Toast.LENGTH_SHORT).show()
+                }
 
-                        // Actualizar el stock en productos
-                        db.collection("productos")
-                            .document(Idpro)
-                            .update("stock", totalpro)
-                            .addOnSuccessListener {
-                                Toast.makeText(this, "Producto vendido", Toast.LENGTH_SHORT).show()
-                                limpiarCampos() //llamada a la función de limpiar campos para evitar duplicados de ventas
-                            }
-                            .addOnFailureListener { e ->
-                                Toast.makeText(this, "Error al vender", Toast.LENGTH_SHORT).show()
-                                limpiarCampos() //llamada a la función de limpiar campos para evitar duplicados de ventas
-                            }
+                else -> {
+                    db.collection("productos").document(idBuscada)
+                        .get()
+                        .addOnSuccessListener { documento ->
+                            if (documento.exists()) {
+                                val stocks = documento.getLong("stock")?.toInt() ?: 0
+                                val nombre = documento.getString("nombre_prod") ?: "Desconocido"
+                                val precioVenta = documento.getDouble("precio_emp") ?: 0.0
+                                val precioProveedor = documento.getDouble("precio_prov") ?: 0.0
+                                val gananciaUnidad = precioVenta - precioProveedor
 
-                        // Consultar si ya existe el producto en la colección "ventas"
-                        db.collection("ventas").whereEqualTo("idproducto", idBuscada)
-                            .get()
-                            .addOnSuccessListener { documents ->
-                                if (!documents.isEmpty) {
-                                    for (document in documents) {
-                                        db.collection("ventas").document(document.id).get()
-                                            .addOnSuccessListener { documentos ->
-                                                // Obtener el valor de "cantidad_ventas" y sumarlo
-                                                val ventasguardadas = documentos.getDouble("cantidad_ventas") ?: 0.0
-                                                val ventatotals = ventasguardadas + vendido
-                                                val ventastot = ganancia * ventatotals
-
-                                                // Actualizar el documento con la nueva cantidad de ventas
-                                                db.collection("ventas")
-                                                    .document(document.id)
-                                                    .update(
-                                                        mapOf(
-                                                            "cantidad_ventas" to ventatotals, // Usar ventatotals aquí
-                                                            "total_ganancia" to ventastot
-                                                        )
-                                                    )
-                                                    .addOnSuccessListener {
-                                                        Toast.makeText(this, "Documento actualizado exitosamente", Toast.LENGTH_SHORT).show()
-                                                    }
-                                                    .addOnFailureListener { e ->
-                                                        Toast.makeText(this, "Error al actualizar documento", Toast.LENGTH_SHORT).show()
-                                                    }
-                                            }
-                                            .addOnFailureListener { exception ->
-                                                Toast.makeText(this, "Error al obtener documento", Toast.LENGTH_SHORT).show()
-                                            }
-                                    }
-                                    Toast.makeText(this, "Datos encontrados correctamente", Toast.LENGTH_SHORT).show()
-                                } else {
-                                    // Si no existe, agregar un nuevo documento
-                                    db.collection("ventas")
-                                        .add(nuevoDoc)
-                                        .addOnSuccessListener { docRef ->
-                                            Toast.makeText(this, "Dato registrado", Toast.LENGTH_SHORT).show()
-                                        }
-                                        .addOnFailureListener { e ->
-                                            Toast.makeText(this, "Dato no registrado", Toast.LENGTH_SHORT).show()
-                                        }
-                                    Toast.makeText(this, "Datos no encontrados", Toast.LENGTH_SHORT).show()
+                                if (stocks <= 0) {
+                                    Toast.makeText(this, "Producto sin cantidad disponible", Toast.LENGTH_SHORT).show()
+                                    return@addOnSuccessListener
                                 }
+
+                                if (cantidadVendida > stocks) {
+                                    Toast.makeText(this, "No hay suficiente cantidad para esa venta", Toast.LENGTH_SHORT).show()
+                                    return@addOnSuccessListener
+                                }
+
+                                val nuevoStock = stocks - cantidadVendida
+                                val totalGanancia = gananciaUnidad * cantidadVendida
+
+                                val venta = hashMapOf(
+                                    "cantidad_ventas" to cantidadVendida,
+                                    "idproducto" to idBuscada,
+                                    "nombre_prod" to nombre,
+                                    "precio_emp" to precioVenta,
+                                    "precio_prov" to precioProveedor,
+                                    "total_ganancia" to totalGanancia
+                                )
+
+                                // Actualizar stock
+                                db.collection("productos").document(idBuscada)
+                                    .update("stock", nuevoStock)
+                                    .addOnSuccessListener {
+                                        Toast.makeText(this, "Stock actualizado", Toast.LENGTH_SHORT).show()
+                                    }
+
+                                // Verificar si ya hay venta registrada
+                                db.collection("ventas").whereEqualTo("idproducto", idBuscada)
+                                    .get()
+                                    .addOnSuccessListener { documents ->
+                                        if (!documents.isEmpty) {
+                                            val docRef = documents.first().reference
+                                            val ventasAnteriores = documents.first().getDouble("cantidad_ventas") ?: 0.0
+                                            val totalActualizado = ventasAnteriores + cantidadVendida
+                                            val gananciaTotal = gananciaUnidad * totalActualizado
+
+                                            docRef.update(
+                                                mapOf(
+                                                    "cantidad_ventas" to totalActualizado,
+                                                    "total_ganancia" to gananciaTotal
+                                                )
+                                            ).addOnSuccessListener {
+                                                Toast.makeText(this, "Venta actualizada correctamente", Toast.LENGTH_SHORT).show()
+                                                limpiarCampos()
+                                            }
+                                        } else {
+                                            db.collection("ventas").add(venta)
+                                                .addOnSuccessListener {
+                                                    Toast.makeText(this, "Venta registrada correctamente", Toast.LENGTH_SHORT).show()
+                                                    limpiarCampos()
+                                                }
+                                        }
+                                    }
+                                    .addOnFailureListener {
+                                        Toast.makeText(this, "Error al consultar ventas", Toast.LENGTH_SHORT).show()
+                                    }
+                            } else {
+                                Toast.makeText(this, "Producto no encontrado", Toast.LENGTH_SHORT).show()
                             }
-                            .addOnFailureListener { e ->
-                                Toast.makeText(this, "Error al realizar la consulta", Toast.LENGTH_SHORT).show()
-                            }
-                    } else {
-                        Toast.makeText(this, "Producto no encontrado", Toast.LENGTH_SHORT).show()
-                    }
+                        }
+                        .addOnFailureListener {
+                            Toast.makeText(this, "Error de conexión con Firestore", Toast.LENGTH_SHORT).show()
+                        }
                 }
-                .addOnFailureListener { e ->
-                    Toast.makeText(this, "Error en la conexión", Toast.LENGTH_SHORT).show()
-                }
-        } //evento-vender
+            }
+        }
+
+
+        regresar.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed() //Regreso a la ventana anterior
+        }
     }//onCreate
 
     fun limpiarCampos(){
