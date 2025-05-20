@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:text="Perfil de Empleado"
+        android:text="Perfil del Empleado"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
