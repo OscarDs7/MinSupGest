@@ -1,4 +1,5 @@
 package com.example.minsupgest
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -13,9 +14,9 @@ class PerfilEmpleadoActivity : AppCompatActivity() {
     private lateinit var etNombre: EditText
     private lateinit var etApellido: EditText
     private lateinit var etCorreo: EditText
-    private lateinit var etTelefono: EditText
     private lateinit var btnEditar: Button
     private lateinit var btnEliminar: Button
+    private lateinit var btnSalir: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +27,7 @@ class PerfilEmpleadoActivity : AppCompatActivity() {
         etCorreo = findViewById(R.id.etCorreo)
         btnEditar = findViewById(R.id.btnEditar)
         btnEliminar = findViewById(R.id.btnEliminar)
+        btnSalir = findViewById(R.id.btnLeave)
 
         db = FirebaseFirestore.getInstance()
 
@@ -46,18 +48,24 @@ class PerfilEmpleadoActivity : AppCompatActivity() {
                 .addOnFailureListener {
                     Toast.makeText(this, "Error al actualizar", Toast.LENGTH_SHORT).show()
                 }
-        }
+        }//btnEditar
 
         btnEliminar.setOnClickListener {
             db.collection("empleados").document(idEmpleado).delete()
                 .addOnSuccessListener {
                     Toast.makeText(this, "Empleado eliminado", Toast.LENGTH_SHORT).show()
                     finish() // Cerrar actividad
+                    cargarDatos()
                 }
                 .addOnFailureListener {
                     Toast.makeText(this, "Error al eliminar", Toast.LENGTH_SHORT).show()
                 }
-        }
+        }//btnEliminar
+
+        btnSalir.setOnClickListener {
+            val intent = Intent(this@PerfilEmpleadoActivity, MenuAdminActivity::class.java)
+            startActivity(intent)
+        }//btnSalir
     }
 
     private fun cargarDatos() {
@@ -69,5 +77,5 @@ class PerfilEmpleadoActivity : AppCompatActivity() {
                     etCorreo.setText(documento.getString("correo"))
                 }
             }
-    }
+    }//cargarDatos
 }
