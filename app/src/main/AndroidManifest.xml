@@ -17,6 +17,9 @@
         android:theme="@style/Theme.MinSupGest"
         tools:targetApi="31">
         <activity
+            android:name=".GraficosActivity"
+            android:exported="false" />
+        <activity
             android:name=".AgregarUsuarioActivity"
             android:exported="false" />
         <activity
@@ -39,29 +42,28 @@
         </activity>
         <activity
             android:name=".RegistrarUsuarioActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".InventarioActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".MenuAdminActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".MenuEmpleadoActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".AgregarProductoActivity"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".ventasActiviti"
-            android:exported="false"></activity>
+            android:exported="false" />
         <activity
             android:name=".PerfilEmpleadoActivity"
             android:exported="false" />
-
     </application>
 
 </manifest>
