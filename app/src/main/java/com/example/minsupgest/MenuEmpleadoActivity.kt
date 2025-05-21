@@ -19,6 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 class MenuEmpleadoActivity : AppCompatActivity() {
     //Instancias
     private lateinit var inventario: ImageButton
+    private lateinit var estadisticas: ImageButton
     private lateinit var agregar_prod: Button
     private lateinit var cerrar_sesion: TextView
 
@@ -34,6 +35,7 @@ class MenuEmpleadoActivity : AppCompatActivity() {
         }
         //Vinculación a los componentes mediante su id
         inventario = findViewById(R.id.imgbInventary2)
+        estadisticas = findViewById(R.id.imgbStatistics2)
         agregar_prod = findViewById(R.id.btnAgregar)
         cerrar_sesion = findViewById(R.id.txtRegreso1)
         //propiedad de subrayado
@@ -42,6 +44,10 @@ class MenuEmpleadoActivity : AppCompatActivity() {
         //Eventos de navegación
         inventario.setOnClickListener {
             val intent = Intent(this@MenuEmpleadoActivity, InventarioActivity::class.java)
+            startActivity(intent)
+        }
+        estadisticas.setOnClickListener {
+            val intent = Intent(this@MenuEmpleadoActivity, GraficosActivity::class.java)
             startActivity(intent)
         }
         agregar_prod.setOnClickListener {
