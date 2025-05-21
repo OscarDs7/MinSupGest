@@ -36,51 +36,71 @@ class GraficosActivity : AppCompatActivity() {
         cargarDatosGanancia()
 
     }
+        // Función que carga los datos de ventas desde Firestore y los muestra en un gráfico de barras
+        private fun cargarDatosVentas() {
+            // Accede a la colección "ventas" en Cloud Firestore
+            db.collection("ventas")
+                .get()
+                .addOnSuccessListener { result ->
+                    // Lista para guardar las entradas del gráfico (valores numéricos)
+                    val entries = ArrayList<BarEntry>()
+                    // Lista para guardar las etiquetas (nombres de productos)
+                    val labels = ArrayList<String>()
 
-    private fun cargarDatosVentas() {
-        db.collection("ventas")
-            .get()
-            .addOnSuccessListener { result ->
-                val entries = ArrayList<BarEntry>()
-                val labels = ArrayList<String>()
+                    var index = 0 // Índice para posicionar las barras en el eje X
 
-                var index = 0
-                for (document in result) {
-                    val nombre = document.getString("nombre_prod") ?: "Producto"
-                    val cantidad = document.getLong("cantidad_ventas")?.toFloat() ?: 0f
+                    // Recorre todos los documentos obtenidos de la colección
+                    for (document in result) {
+                        // Obtiene el nombre del producto (campo "nombre_prod"), o "Producto" si está nulo
+                        val nombre = document.getString("nombre_prod") ?: "Producto"
+                        // Obtiene la cantidad de ventas (campo "cantidad_ventas") como float
+                        val cantidad = document.getLong("cantidad_ventas")?.toFloat() ?: 0f
 
-                    if (cantidad > 0f) {
-                        entries.add(BarEntry(index.toFloat(), cantidad))
-                        labels.add(nombre)
-                        index++
+                        // Solo agrega productos con ventas mayores a cero
+                        if (cantidad > 0f) {
+                            entries.add(BarEntry(index.toFloat(), cantidad)) // Agrega la barra
+                            labels.add(nombre) // Agrega la etiqueta correspondiente
+                            index++ // Incrementa la posición en X
+                        }
                     }
+
+                    // Si no hay datos válidos, muestra un mensaje y termina
+                    if (entries.isEmpty()) {
+                        Toast.makeText(this, "No hay ventas registradas", Toast.LENGTH_SHORT).show()
+                        return@addOnSuccessListener
+                    }
+
+                    // Crea un conjunto de datos para el gráfico con las entradas
+                    val dataSet = BarDataSet(entries, "Ventas por producto")
+                    dataSet.valueTextSize = 12f // Tamaño del texto de los valores sobre cada barra
+
+                    // Asocia el conjunto de datos al gráfico
+                    val data = BarData(dataSet)
+                    barChart.data = data
+
+                    // Configura el eje X con las etiquetas de producto
+                    barChart.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
+                    barChart.xAxis.granularity = 1f // Espaciado entre las barras
+                    barChart.xAxis.setDrawLabels(true) // Muestra etiquetas
+                    barChart.xAxis.position = XAxis.XAxisPosition.BOTTOM // Posiciona las etiquetas abajo
+
+                    // Configura el eje Y para empezar desde 0
+                    barChart.axisLeft.axisMinimum = 0f
+
+                    // Desactiva la descripción del gráfico (texto por defecto)
+                    barChart.description.isEnabled = false
+
+                    // Redibuja el gráfico con los nuevos datos
+                    barChart.invalidate()
                 }
-
-                if (entries.isEmpty()) {
-                    Toast.makeText(this, "No hay ventas registradas", Toast.LENGTH_SHORT).show()
-                    return@addOnSuccessListener
+                .addOnFailureListener {
+                    // Muestra mensaje si hubo un error al consultar Firestore
+                    Toast.makeText(this, "Error al cargar datos", Toast.LENGTH_SHORT).show()
                 }
+        }//cargarDatosVentas()
 
-                val dataSet = BarDataSet(entries, "Ventas por producto")
-                val data = BarData(dataSet)
-                dataSet.valueTextSize = 12f // Tamaño de los números de cada barra
 
-                barChart.data = data
-                barChart.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
-                barChart.xAxis.granularity = 1f
-                barChart.xAxis.setDrawLabels(true)
-                barChart.xAxis.position = XAxis.XAxisPosition.BOTTOM
-                barChart.axisLeft.axisMinimum = 0f
-                barChart.description.isEnabled = false
-
-                barChart.invalidate()
-            }
-            .addOnFailureListener {
-                Toast.makeText(this, "Error al cargar datos", Toast.LENGTH_SHORT).show()
-            }
-    }//cargarDatosVentas
-
-    private fun cargarDatosGanancia() {
+        private fun cargarDatosGanancia() {
         db.collection("ventas")
             .get()
             .addOnSuccessListener { result ->
@@ -122,6 +142,6 @@ class GraficosActivity : AppCompatActivity() {
             .addOnFailureListener {
                 Toast.makeText(this, "Error al cargar datos", Toast.LENGTH_SHORT).show()
             }
-    }
+    }//cargarDatosGanancia
 
 }
