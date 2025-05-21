@@ -18,6 +18,7 @@ class MenuAdminActivity : AppCompatActivity() {
     private lateinit var btnvender:Button
     private lateinit var ibtnEmpleados: ImageButton
     private lateinit var txtRegreso: TextView
+    private lateinit var ibtnEstadisticas: ImageButton
 
     //val recommendations = findViewById<ImageButton>(R.id.imgbComments)
     //val employees = findViewById<ImageButton>(R.id.imgbEmployes)
@@ -32,6 +33,7 @@ class MenuAdminActivity : AppCompatActivity() {
         btnAgregarProducto = findViewById(R.id.btnAgregarProducto)
         btnvender = findViewById(R.id.btnVenta)
         ibtnEmpleados = findViewById(R.id.imgbEmployes)
+        ibtnEstadisticas = findViewById(R.id.imgbStatistics)
         txtRegreso = findViewById(R.id.txtRegreso)
         //propiedad de subrayado
         txtRegreso.paintFlags = txtRegreso.paintFlags or Paint.UNDERLINE_TEXT_FLAG
@@ -57,6 +59,10 @@ class MenuAdminActivity : AppCompatActivity() {
             val intent = Intent(this@MenuAdminActivity, Iniciogerente::class.java)
             startActivity(intent)
             Toast.makeText(this@MenuAdminActivity, "Saliendo de rol Gerente...", Toast.LENGTH_SHORT).show()
+        }
+        ibtnEstadisticas.setOnClickListener {
+            val intent = Intent(this@MenuAdminActivity, GraficosActivity::class.java)
+            startActivity(intent)
         }
     }
 }
