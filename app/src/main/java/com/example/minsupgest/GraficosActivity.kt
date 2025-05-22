@@ -1,7 +1,9 @@
 package com.example.minsupgest
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +21,7 @@ class GraficosActivity : AppCompatActivity() {
     //Instancias
     private lateinit var barChart: BarChart
     private lateinit var barChart2: BarChart
+    private lateinit var btnBack: Button
     private val db = FirebaseFirestore.getInstance()
 
     @SuppressLint("MissingInflatedId")
@@ -30,10 +33,15 @@ class GraficosActivity : AppCompatActivity() {
         //Vinculación
         barChart = findViewById(R.id.barChart)
         barChart2 = findViewById(R.id.barChart2)
+        btnBack = findViewById(R.id.btnBack)
 
         //Llamada a función
         cargarDatosVentas()
         cargarDatosGanancia()
+
+            btnBack.setOnClickListener {
+                onBackPressedDispatcher.onBackPressed() //Regreso a la ventana anterior
+            }
 
     }
         // Función que carga los datos de ventas desde Firestore y los muestra en un gráfico de barras
