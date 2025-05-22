@@ -19,9 +19,9 @@ import com.google.firebase.firestore.FirebaseFirestore
 class MenuEmpleadoActivity : AppCompatActivity() {
     //Instancias
     private lateinit var inventario: ImageButton
-    private lateinit var estadisticas: ImageButton
     private lateinit var agregar_prod: Button
     private lateinit var cerrar_sesion: TextView
+    private lateinit var estadisticas: ImageButton
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,12 +42,12 @@ class MenuEmpleadoActivity : AppCompatActivity() {
         cerrar_sesion.paintFlags = cerrar_sesion.paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
         //Eventos de navegación
-        inventario.setOnClickListener {
-            val intent = Intent(this@MenuEmpleadoActivity, InventarioActivity::class.java)
-            startActivity(intent)
-        }
         estadisticas.setOnClickListener {
             val intent = Intent(this@MenuEmpleadoActivity, GraficosActivity::class.java)
+            startActivity(intent)
+        }
+        inventario.setOnClickListener {
+            val intent = Intent(this@MenuEmpleadoActivity, InventarioActivity::class.java)
             startActivity(intent)
         }
         agregar_prod.setOnClickListener {

@@ -1,9 +1,11 @@
 package com.example.minsupgest
 
+import android.annotation.SuppressLint
 import android.graphics.Typeface
 import android.os.Bundle
 import android.util.TypedValue
 import android.view.Gravity
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TableLayout
@@ -17,19 +19,27 @@ import com.google.firebase.firestore.FirebaseFirestore
 class InventarioActivity : AppCompatActivity() {
     //Instancias a componentes gráficos
     private lateinit var tableLayout: TableLayout
+    private lateinit var btnRegresar: Button
     private lateinit var db: FirebaseFirestore //instancia a la clase Firebase
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inventario)
 
         tableLayout = findViewById(R.id.tblDatos)
+        btnRegresar = findViewById(R.id.btnReturned)
         // Inicialización Firebase
         FirebaseApp.initializeApp(this)
         db = FirebaseFirestore.getInstance()
 
         // Llamada a la función
         mostrarDatos()
+
+        // Evento de regreso
+        btnRegresar.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed() //Regreso a la ventana anterior
+        }
 
     }//onCreate
 
