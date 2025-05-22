@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FF54A4D6"
     tools:context=".GraficosActivity">
 
     <TextView
@@ -13,6 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="Estadísticas de Ventas"
+        android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +24,7 @@
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barChart"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
         android:layout_margin="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="35dp"
@@ -35,7 +37,7 @@
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barChart2"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
         android:layout_margin="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="35dp"
@@ -44,6 +46,20 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/barChart"
-        tools:ignore="MissingClass,MissingConstraints" />
+        tools:ignore="MissingClass,MissingConstraints">
+
+    </com.github.mikephil.charting.charts.BarChart>
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_marginTop="42dp"
+        android:backgroundTint="#3F51B5"
+        android:text="Regresar"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/barChart2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
