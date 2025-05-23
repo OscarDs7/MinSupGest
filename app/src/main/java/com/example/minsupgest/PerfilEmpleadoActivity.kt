@@ -54,8 +54,10 @@ class PerfilEmpleadoActivity : AppCompatActivity() {
             db.collection("empleados").document(idEmpleado).delete()
                 .addOnSuccessListener {
                     Toast.makeText(this, "Empleado eliminado", Toast.LENGTH_SHORT).show()
-                    finish() // Cerrar actividad
-                    cargarDatos()
+                    val intent = Intent(this@PerfilEmpleadoActivity, MenuAdminActivity::class.java)
+                    startActivity(intent)
+                    cargarDatos() //hacemos la consulta de los registros
+                    //finish() // Cerrar actividad
                 }
                 .addOnFailureListener {
                     Toast.makeText(this, "Error al eliminar", Toast.LENGTH_SHORT).show()
