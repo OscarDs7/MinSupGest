@@ -12,10 +12,11 @@
         android:id="@+id/txtEmpleado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/button"
         android:backgroundTint="#2196F3"
         android:text="Empleados"
+        android:textColor="@color/white"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,34 +28,39 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="1dp"
-        android:background="@color/white"
+        android:background="#3F51B5"
+        android:backgroundTint="#2196F3"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddUser"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmpleado" >
-
-    </androidx.recyclerview.widget.RecyclerView>
+        app:layout_constraintTop_toBottomOf="@id/txtEmpleado" />
 
     <Button
         android:id="@+id/btnAddUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_weight="1"
         android:backgroundTint="#3F51B5"
         android:text="Añadir Usuario"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvEmpleados" />
+        app:layout_constraintTop_toBottomOf="@id/rvEmpleados" />
 
     <Button
         android:id="@+id/btnRegresar2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
-        android:layout_marginEnd="32dp"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:layout_weight="1"
         android:backgroundTint="#E22020"
         android:text="Regresar"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rvEmpleados" />
+        app:layout_constraintTop_toBottomOf="@id/rvEmpleados" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
