@@ -17,5 +17,5 @@ Desarrolladores
 ---------------
 - Oscar Eduardo Romero Escamilla
 - Eduardo Rafael Medina Rubio
-- Diego Jahír Corona
-- Bryan Nicolás Soto 
+- Diego Jahír Corona Gómez
+- Bryan Nicolás Soto Rodríguez
