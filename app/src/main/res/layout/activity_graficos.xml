@@ -12,7 +12,7 @@
         android:id="@+id/txtGraphic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="55dp"
         android:text="Estadísticas de Ventas"
         android:textColor="@color/white"
         android:textSize="24sp"
@@ -21,31 +21,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/txtCantVentas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Cantidad de ventas"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtGraphic" />
+
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barChart"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="220dp"
         android:layout_margin="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="23dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtGraphic"
+        app:layout_constraintTop_toBottomOf="@+id/txtCantVentas"
         tools:ignore="MissingClass,MissingConstraints" />
 
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barChart2"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="220dp"
         android:layout_margin="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="35dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/barChart"
+        app:layout_constraintTop_toBottomOf="@+id/txtTotalGanancia"
         tools:ignore="MissingClass,MissingConstraints">
 
     </com.github.mikephil.charting.charts.BarChart>
@@ -54,12 +65,24 @@
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="60dp"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="#3F51B5"
         android:text="Regresar"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/barChart2" />
+
+    <TextView
+        android:id="@+id/txtTotalGanancia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Total de Ganancia"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/barChart" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

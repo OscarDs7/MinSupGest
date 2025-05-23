@@ -1,12 +1,16 @@
 package com.example.minsupgest
 
 import android.annotation.SuppressLint
+import android.graphics.Color
+import android.graphics.Paint
 import android.os.Bundle
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.toColor
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
@@ -21,6 +25,8 @@ class GraficosActivity : AppCompatActivity() {
     private lateinit var barChart: BarChart
     private lateinit var barChart2: BarChart
     private lateinit var btnRegreso: Button
+    private lateinit var txtCanVen: TextView
+    private lateinit var txtTotGan: TextView
     //Instancia a BD en Firebase Firestore
     private val db = FirebaseFirestore.getInstance()
 
@@ -34,8 +40,14 @@ class GraficosActivity : AppCompatActivity() {
         barChart = findViewById(R.id.barChart)
         barChart2 = findViewById(R.id.barChart2)
         btnRegreso = findViewById(R.id.btnBack)
+        txtCanVen = findViewById(R.id.txtCantVentas)
+        txtTotGan = findViewById(R.id.txtTotalGanancia)
 
-        //Llamada a función
+        //Subrayados de etiquetas
+        txtCanVen.paintFlags = txtCanVen.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+        txtTotGan.paintFlags = txtTotGan.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+
+        //Llamadas a funciones
         cargarDatosVentas()
         cargarDatosGanancia()
 
@@ -81,7 +93,9 @@ class GraficosActivity : AppCompatActivity() {
 
                     // Crea un conjunto de datos para el gráfico con las entradas
                     val dataSet = BarDataSet(entries, "Ventas por producto")
-                    dataSet.valueTextSize = 12f // Tamaño del texto de los valores sobre cada barra
+                    dataSet.valueTextSize = 13f // Tamaño del texto de los valores sobre cada barra
+                    dataSet.color = Color.BLUE // Color de las barras
+                    dataSet.valueTextColor = Color.parseColor("#ffffff") // Color negro para los textos
 
                     // Asocia el conjunto de datos al gráfico
                     val data = BarData(dataSet)
@@ -135,14 +149,16 @@ class GraficosActivity : AppCompatActivity() {
 
                 val dataSet = BarDataSet(entries, "Total de ganancia por producto")
                 val data = BarData(dataSet)
-                dataSet.valueTextSize = 12f // Tamaño de los números de cada barra
-
+                dataSet.valueTextSize = 13f // Tamaño del texto de los valores sobre cada barra
+                dataSet.color = Color.CYAN // Color de las barras
+                dataSet.valueTextColor = Color.parseColor("#ffffff") // Color blanco para los textos
 
                 barChart2.data = data
                 barChart2.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
                 barChart2.xAxis.granularity = 1f
                 barChart2.xAxis.setDrawLabels(true)
                 barChart2.xAxis.position = XAxis.XAxisPosition.BOTTOM
+                barChart.xAxis.labelRotationAngle = -45f // Rotación de etiquetas
                 barChart2.axisLeft.axisMinimum = 0f
                 barChart2.description.isEnabled = false
 
