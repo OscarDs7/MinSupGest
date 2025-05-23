@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.graphics.Paint
 import android.widget.TextView
+import android.content.Context
+import com.google.firebase.firestore.FirebaseFirestore
 
 class MenuAdminActivity : AppCompatActivity() {
    // val statistics = findViewById<ImageButton>(R.id.imgbStatistics)
@@ -35,6 +37,7 @@ class MenuAdminActivity : AppCompatActivity() {
         ibtnEmpleados = findViewById(R.id.imgbEmployes)
         ibtnEstadisticas = findViewById(R.id.imgbStatistics)
         txtRegreso = findViewById(R.id.txtRegreso)
+        verificarStockCritico(this)
         //propiedad de subrayado
         txtRegreso.paintFlags = txtRegreso.paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
@@ -64,5 +67,22 @@ class MenuAdminActivity : AppCompatActivity() {
             val intent = Intent(this@MenuAdminActivity, GraficosActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    fun verificarStockCritico(context: Context) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("productos")
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    val nombre = document.getString("nombre_prod") ?: continue
+                    val stock = document.getLong("stock") ?: continue
+
+                    if (stock <= 5) {
+                        val mensaje = "El producto \"$nombre\" tiene solo $stock unidades disponibles."
+                        NotificationUtils.mostrarNotificacion(context, "Stock Crítico", mensaje)
+                    }
+                }
+            }
     }
 }

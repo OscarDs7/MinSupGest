@@ -8,11 +8,11 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import android.content.Context
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-
 import com.google.firebase.firestore.FirebaseFirestore
 
 
@@ -40,6 +40,7 @@ class MenuEmpleadoActivity : AppCompatActivity() {
         agregar_prod = findViewById(R.id.btnAgregar)
         hacer_venta = findViewById(R.id.btnSale)
         cerrar_sesion = findViewById(R.id.txtRegreso1)
+        verificarStockCritico(this)
         //propiedad de subrayado
         cerrar_sesion.paintFlags = cerrar_sesion.paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
@@ -65,5 +66,22 @@ class MenuEmpleadoActivity : AppCompatActivity() {
             startActivity(intent)
             Toast.makeText(this@MenuEmpleadoActivity,"Saliste de rol empleado...", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    fun verificarStockCritico(context: Context) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("productos")
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    val nombre = document.getString("nombre_prod") ?: continue
+                    val stock = document.getLong("stock") ?: continue
+
+                    if (stock <= 5) {
+                        val mensaje = "El producto \"$nombre\" tiene solo $stock unidades disponibles."
+                        NotificationUtils.mostrarNotificacion(context, "Stock Crítico", mensaje)
+                    }
+                }
+            }
     }
 }

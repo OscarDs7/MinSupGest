@@ -139,7 +139,4 @@ class InventarioActivity : AppCompatActivity() {
         contenedor.addView(cardView)
     }
 
-
-
-
 }
