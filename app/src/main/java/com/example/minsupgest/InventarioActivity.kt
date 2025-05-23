@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.TypedValue
 import android.view.Gravity
 import android.widget.Button
@@ -66,6 +67,7 @@ class InventarioActivity : AppCompatActivity() {
             }
     }//mostrarDatos
 
+    // Inserción de toda una fila completa de información
     private fun agregarFila(nombre: String, precio_emp: String, precio_prov: String, cantidad: String) {
         val fila = TableRow(this)
 
@@ -93,18 +95,24 @@ class InventarioActivity : AppCompatActivity() {
         }
     }//agregarFila
 
-
+    //Creación de las celdas o campos de la tabla
     private fun crearTextView(texto: String, isHeader: Boolean = false): TextView {
-        return TextView(this).apply {
+        val textView = TextView(this)
+        textView.apply {
             text = texto
             setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
             setPadding(16, 8, 16, 8)
             gravity = Gravity.CENTER
+            maxLines = 2
+            ellipsize = TextUtils.TruncateAt.END
+            layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f) // Responsive de la celda
             if (isHeader) {
                 setTypeface(null, Typeface.BOLD)
             }
         }
+        return textView
     }//crearTextView
+
 
 
     @SuppressLint("SetTextI18n")
