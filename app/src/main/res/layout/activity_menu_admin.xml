@@ -13,19 +13,18 @@
         android:id="@+id/btnVenta"
         android:layout_width="147dp"
         android:layout_height="75dp"
+        android:layout_marginEnd="32dp"
         android:text="Hace venta"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.803"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtEmployes"
         app:layout_constraintVertical_bias="0.163"
         tools:ignore="MissingConstraints" />
 
     <ImageButton
         android:id="@+id/imgbStatistics"
-        android:layout_width="192dp"
+        android:layout_width="200dp"
         android:layout_height="90dp"
         android:layout_marginTop="50dp"
         android:background="@color/white"
@@ -55,7 +54,7 @@
 
     <ImageButton
         android:id="@+id/imgbInventary"
-        android:layout_width="192dp"
+        android:layout_width="200dp"
         android:layout_height="90dp"
         android:layout_marginTop="10dp"
         android:background="@color/white"
@@ -82,7 +81,7 @@
 
     <ImageButton
         android:id="@+id/imgbComments"
-        android:layout_width="192dp"
+        android:layout_width="200dp"
         android:layout_height="90dp"
         android:layout_marginTop="10dp"
         android:background="@color/white"
@@ -108,7 +107,7 @@
 
     <ImageButton
         android:id="@+id/imgbEmployes"
-        android:layout_width="192dp"
+        android:layout_width="200dp"
         android:layout_height="90dp"
         android:layout_marginTop="10dp"
         android:background="@color/white"
@@ -136,11 +135,10 @@
         android:id="@+id/btnAgregarProducto"
         android:layout_width="147dp"
         android:layout_height="75dp"
+        android:layout_marginStart="32dp"
         android:text="Agregar Producto"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.156"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtEmployes"
         app:layout_constraintVertical_bias="0.142"

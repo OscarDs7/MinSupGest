@@ -22,6 +22,7 @@ class MenuEmpleadoActivity : AppCompatActivity() {
     private lateinit var agregar_prod: Button
     private lateinit var cerrar_sesion: TextView
     private lateinit var estadisticas: ImageButton
+    private lateinit var hacer_venta: Button
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +38,7 @@ class MenuEmpleadoActivity : AppCompatActivity() {
         inventario = findViewById(R.id.imgbInventary2)
         estadisticas = findViewById(R.id.imgbStatistics2)
         agregar_prod = findViewById(R.id.btnAgregar)
+        hacer_venta = findViewById(R.id.btnSale)
         cerrar_sesion = findViewById(R.id.txtRegreso1)
         //propiedad de subrayado
         cerrar_sesion.paintFlags = cerrar_sesion.paintFlags or Paint.UNDERLINE_TEXT_FLAG
@@ -52,6 +54,10 @@ class MenuEmpleadoActivity : AppCompatActivity() {
         }
         agregar_prod.setOnClickListener {
             val intent = Intent(this@MenuEmpleadoActivity, AgregarProductoActivity::class.java)
+            startActivity(intent)
+        }
+        hacer_venta.setOnClickListener {
+            val intent = Intent(this@MenuEmpleadoActivity, ventasActiviti::class.java)
             startActivity(intent)
         }
         cerrar_sesion.setOnClickListener {
