@@ -158,7 +158,6 @@ class GraficosActivity : AppCompatActivity() {
                 barChart2.xAxis.granularity = 1f
                 barChart2.xAxis.setDrawLabels(true)
                 barChart2.xAxis.position = XAxis.XAxisPosition.BOTTOM
-                barChart.xAxis.labelRotationAngle = -45f // Rotación de etiquetas
                 barChart2.axisLeft.axisMinimum = 0f
                 barChart2.description.isEnabled = false
 
