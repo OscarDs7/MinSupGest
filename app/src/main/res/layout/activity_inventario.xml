@@ -14,7 +14,6 @@
         android:id="@+id/txtInventary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="50dp"
         android:background="@drawable/button"
         android:text="@string/title_inventary"
@@ -60,7 +59,7 @@
 
                     <TextView
                         android:id="@+id/txtProducto"
-                        android:layout_width="match_parent"
+                        android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:background="#2196F3"
                         android:padding="14dp"

@@ -96,11 +96,11 @@ class InventarioActivity : AppCompatActivity() {
     }//agregarFila
 
     //Creación de las celdas o campos de la tabla
-    private fun crearTextView(texto: String, isHeader: Boolean = false): TextView {
+    private fun crearTextView(texto: String,  isHeader: Boolean = false): TextView {
         val textView = TextView(this)
         textView.apply {
             text = texto
-            setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
+            setTextSize(TypedValue.COMPLEX_UNIT_SP, 15f)
             setPadding(16, 8, 16, 8)
             gravity = Gravity.CENTER
             maxLines = 2
