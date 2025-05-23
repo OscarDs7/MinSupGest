@@ -12,3 +12,10 @@ Tecnología usada
 - Lenguaje Kotlin
 - Firebase
 - Git / GitHub
+
+Desarrolladores 
+---------------
+- Oscar Eduardo Romero Escamilla
+- Eduardo Rafael Medina Rubio
+- Diego Jahír Corona
+- Bryan Nicolás Soto 
