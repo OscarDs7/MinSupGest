@@ -9,8 +9,12 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import android.content.Context
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.firestore.FirebaseFirestore
@@ -40,7 +44,20 @@ class MenuEmpleadoActivity : AppCompatActivity() {
         agregar_prod = findViewById(R.id.btnAgregar)
         hacer_venta = findViewById(R.id.btnSale)
         cerrar_sesion = findViewById(R.id.txtRegreso1)
-        verificarStockCritico(this)
+
+        /* Permiso para el envío de notificaciones a dispositivos android >= 13 */
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(android.Manifest.permission.POST_NOTIFICATIONS),
+                    1001
+                )
+            }
+        }
+
+        verificarStockCritico(this) //llamada a la función
         //propiedad de subrayado
         cerrar_sesion.paintFlags = cerrar_sesion.paintFlags or Paint.UNDERLINE_TEXT_FLAG
 
@@ -79,9 +96,10 @@ class MenuEmpleadoActivity : AppCompatActivity() {
 
                     if (stock <= 5) {
                         val mensaje = "El producto \"$nombre\" tiene solo $stock unidades disponibles."
+                        Toast.makeText(context, mensaje, Toast.LENGTH_LONG).show() // Diagnóstico
                         NotificationUtils.mostrarNotificacion(context, "Stock Crítico", mensaje)
                     }
                 }
             }
-    }
+    }//verificarStockCritico
 }

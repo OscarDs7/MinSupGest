@@ -11,6 +11,10 @@ import android.content.Intent
 import android.graphics.Paint
 import android.widget.TextView
 import android.content.Context
+import android.content.pm.PackageManager
+import android.os.Build
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.google.firebase.firestore.FirebaseFirestore
 
 class MenuAdminActivity : AppCompatActivity() {
@@ -37,6 +41,19 @@ class MenuAdminActivity : AppCompatActivity() {
         ibtnEmpleados = findViewById(R.id.imgbEmployes)
         ibtnEstadisticas = findViewById(R.id.imgbStatistics)
         txtRegreso = findViewById(R.id.txtRegreso)
+
+        /* Permiso para el envío de notificaciones a dispositivos android >= 13 */
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(android.Manifest.permission.POST_NOTIFICATIONS),
+                    1001
+                )
+            }
+        }
+
         verificarStockCritico(this)
         //propiedad de subrayado
         txtRegreso.paintFlags = txtRegreso.paintFlags or Paint.UNDERLINE_TEXT_FLAG
