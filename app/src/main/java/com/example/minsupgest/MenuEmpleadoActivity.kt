@@ -96,7 +96,6 @@ class MenuEmpleadoActivity : AppCompatActivity() {
 
                     if (stock <= 5) {
                         val mensaje = "El producto \"$nombre\" tiene solo $stock unidades disponibles."
-                        Toast.makeText(context, mensaje, Toast.LENGTH_LONG).show() // Diagnóstico
                         NotificationUtils.mostrarNotificacion(context, "Stock Crítico", mensaje)
                     }
                 }
