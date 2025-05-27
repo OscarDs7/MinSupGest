@@ -57,7 +57,7 @@ class MenuAdminActivity : AppCompatActivity() {
         verificarStockCritico(this)
         //propiedad de subrayado
         txtRegreso.paintFlags = txtRegreso.paintFlags or Paint.UNDERLINE_TEXT_FLAG
-
+        val imgBtnRecomendaciones = findViewById<ImageButton>(R.id.imgbComments)
         //Eventos listener
         inventary.setOnClickListener {
             val intent = Intent(this@MenuAdminActivity, InventarioActivity::class.java)
@@ -82,6 +82,10 @@ class MenuAdminActivity : AppCompatActivity() {
         }
         ibtnEstadisticas.setOnClickListener {
             val intent = Intent(this@MenuAdminActivity, GraficosActivity::class.java)
+            startActivity(intent)
+        }
+        imgBtnRecomendaciones.setOnClickListener {
+            val intent = Intent(this, RecomendacionesActivity::class.java)
             startActivity(intent)
         }
     }

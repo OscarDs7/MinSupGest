@@ -1,6 +1,7 @@
 package com.example.minsupgest
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -23,6 +24,11 @@ class InventarioActivity : AppCompatActivity() {
     private lateinit var tableLayout: TableLayout
     private lateinit var btnRegresar: Button
     private lateinit var db: FirebaseFirestore //instancia a la clase Firebase
+    private lateinit var btnEditarProducto: Button
+    private var nombreDelProducto: String = ""
+    private var precioEmpresa: Double = 0.0
+    private var precioProveedor: Double = 0.0
+    private var stockActual: Long = 0
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,6 +66,17 @@ class InventarioActivity : AppCompatActivity() {
 
                     agregarFila(nombre, precio_empresa, precio_proveedor, cantidad)
                 }
+                btnEditarProducto = findViewById(R.id.btnEditarProducto)
+
+                btnEditarProducto.setOnClickListener {
+                    val intent = Intent(this, EditarProductoActivity::class.java)
+                    intent.putExtra("nombre", nombreDelProducto)
+                    intent.putExtra("precio_emp", precioEmpresa)
+                    intent.putExtra("precio_prov", precioProveedor)
+                    intent.putExtra("stock", stockActual)
+                    startActivity(intent)
+                }
+
             }
             .addOnFailureListener { exception ->
                 // Manejo de errores
@@ -92,6 +109,12 @@ class InventarioActivity : AppCompatActivity() {
         // Evento clic en fila
         fila.setOnClickListener {
             mostrarDetalle(nombre, precio_emp, cantidad, "")
+            // Guardar variables para edición
+            nombreDelProducto = nombre
+            precioEmpresa = precio_emp.toDoubleOrNull() ?: 0.0
+            precioProveedor = precio_prov.toDoubleOrNull() ?: 0.0
+            stockActual = cantidad.toLongOrNull() ?: 0
+
         }
     }//agregarFila
 

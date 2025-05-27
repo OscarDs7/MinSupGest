@@ -87,10 +87,10 @@
         android:background="@color/white"
         android:contentDescription="Recomendaciones"
         android:scaleType="fitCenter"
+        app:srcCompat="@drawable/ic_recomendaciones"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtInventary"
-        app:srcCompat="@drawable/ic_recomendaciones" />
+        app:layout_constraintTop_toBottomOf="@+id/txtInventary"/>
 
     <TextView
         android:id="@+id/txtComments"
