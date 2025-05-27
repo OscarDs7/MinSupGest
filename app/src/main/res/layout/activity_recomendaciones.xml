@@ -1,28 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/svActivity"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#2FC8E2">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:translationY="40dp">
+
+        <TextView
+            android:id="@+id/txtRecommendations"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recomendaciones"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txtResumenRecomendacion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:text="Cargando..."
-            android:textSize="18sp"
             android:textColor="@android:color/black"
-            android:layout_marginBottom="16dp"/>
+            android:textSize="18sp"
+            android:translationY="10dp" />
 
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/barChartRecomendaciones"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginBottom="16dp" />
 
         <TableLayout
             android:id="@+id/tblRecomendaciones"
@@ -31,27 +44,30 @@
             android:stretchColumns="1">
 
             <TableRow>
+
                 <TextView
+                    android:background="#2196F3"
+                    android:padding="8dp"
                     android:text="Producto"
-                    android:padding="8dp"
-                    android:textStyle="bold"
                     android:textColor="@android:color/white"
-                    android:background="#2196F3" />
+                    android:textStyle="bold" />
+
                 <TextView
-                    android:text="Ventas"
+                    android:background="#2196F3"
                     android:padding="8dp"
-                    android:textStyle="bold"
+                    android:text="Ventas"
                     android:textColor="@android:color/white"
-                    android:background="#2196F3" />
+                    android:textStyle="bold" />
             </TableRow>
-            <Button
-                android:id="@+id/btnVolverAlMenu"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Volver al menú"
-                android:layout_marginTop="24dp"
-                android:backgroundTint="#3F51B5"
-                android:textColor="@android:color/white"/>
         </TableLayout>
+
+        <Button
+            android:id="@+id/btnVolverAlMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="#3F51B5"
+            android:text="Volver al menú"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 </ScrollView>

@@ -31,10 +31,11 @@
             android:exported="false" />
         <activity
             android:name=".Iniciogerente"
-            android:exported="true" />
-        <activity android:name=".EditarProductoActivity" />
-        <activity android:name=".RecomendacionesActivity" />
-
+            android:exported="false" />
+        <activity
+            android:name=".EditarProductoActivity" />
+        <activity
+            android:name=".RecomendacionesActivity" />
         <activity
             android:name=".Selecionusuario"
             android:exported="true">

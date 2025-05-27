@@ -1,5 +1,6 @@
 package com.example.minsupgest
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -11,6 +12,7 @@ class EditarProductoActivity : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
     private lateinit var idDocumento: String
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_producto)

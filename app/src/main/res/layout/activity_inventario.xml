@@ -116,18 +116,20 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/btnEditarProducto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:text="Editar"
+                android:textSize="16sp" />
+
+            <Button
                 android:id="@+id/btnReturned"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Regresar"
                 android:textSize="16sp" />
-            <Button
-                android:id="@+id/btnEditarProducto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Editar"
-                android:layout_marginTop="8dp"
-                android:layout_gravity="center_horizontal" />
 
 
         </LinearLayout>
