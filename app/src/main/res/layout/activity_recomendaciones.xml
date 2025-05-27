@@ -3,19 +3,21 @@
     android:id="@+id/svActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     android:background="#2FC8E2">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp"
-        android:translationY="40dp">
+        android:paddingTop="40dp"
+        android:padding="16dp">
 
         <TextView
             android:id="@+id/txtRecommendations"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="40dp"
             android:text="Recomendaciones"
             android:textAlignment="center"
             android:textSize="24sp"
@@ -26,10 +28,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
+            android:paddingTop="20dp"
             android:text="Cargando..."
             android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:translationY="10dp" />
+            android:textSize="18sp" />
 
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/barChartRecomendaciones"
@@ -41,11 +43,15 @@
             android:id="@+id/tblRecomendaciones"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="20dp"
             android:stretchColumns="1">
 
             <TableRow>
 
                 <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:background="#2196F3"
                     android:padding="8dp"
                     android:text="Producto"
@@ -53,6 +59,9 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:background="#2196F3"
                     android:padding="8dp"
                     android:text="Ventas"
