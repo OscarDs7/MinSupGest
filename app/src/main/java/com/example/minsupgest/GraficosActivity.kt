@@ -104,6 +104,9 @@ class GraficosActivity : AppCompatActivity() {
                     // Configura el eje X con las etiquetas de producto
                     barChart.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
                     barChart.xAxis.granularity = 1f // Espaciado entre las barras
+                    barChart.xAxis.labelRotationAngle = -45f
+                    barChart.axisRight.isEnabled = false
+                    barChart.animateY(1000)
                     barChart.xAxis.setDrawLabels(true) // Muestra etiquetas
                     barChart.xAxis.position = XAxis.XAxisPosition.BOTTOM // Posiciona las etiquetas abajo
 
@@ -156,6 +159,9 @@ class GraficosActivity : AppCompatActivity() {
                 barChart2.data = data
                 barChart2.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
                 barChart2.xAxis.granularity = 1f
+                barChart2.xAxis.labelRotationAngle = -45f
+                barChart2.axisRight.isEnabled = false
+                barChart2.animateY(1000)
                 barChart2.xAxis.setDrawLabels(true)
                 barChart2.xAxis.position = XAxis.XAxisPosition.BOTTOM
                 barChart2.axisLeft.axisMinimum = 0f

@@ -78,6 +78,7 @@ class RecomendacionesActivity : AppCompatActivity() {
 
         val dataSet = BarDataSet(entries, "Ventas por producto")
         dataSet.color = Color.parseColor("#3F51B5")
+        dataSet.valueTextSize = 13f // Tamaño del texto de los valores sobre cada barra
 
         val data = BarData(dataSet)
         data.barWidth = 0.9f
