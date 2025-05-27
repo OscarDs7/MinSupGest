@@ -26,6 +26,7 @@ class MenuEmpleadoActivity : AppCompatActivity() {
     private lateinit var agregar_prod: Button
     private lateinit var cerrar_sesion: TextView
     private lateinit var estadisticas: ImageButton
+    private lateinit var recomendaciones: ImageButton
     private lateinit var hacer_venta: Button
 
     @SuppressLint("MissingInflatedId")
@@ -41,6 +42,7 @@ class MenuEmpleadoActivity : AppCompatActivity() {
         //Vinculación a los componentes mediante su id
         inventario = findViewById(R.id.imgbInventary2)
         estadisticas = findViewById(R.id.imgbStatistics2)
+        recomendaciones = findViewById(R.id.imgbComments2)
         agregar_prod = findViewById(R.id.btnAgregar)
         hacer_venta = findViewById(R.id.btnSale)
         cerrar_sesion = findViewById(R.id.txtRegreso1)
@@ -64,6 +66,10 @@ class MenuEmpleadoActivity : AppCompatActivity() {
         //Eventos de navegación
         estadisticas.setOnClickListener {
             val intent = Intent(this@MenuEmpleadoActivity, GraficosActivity::class.java)
+            startActivity(intent)
+        }
+        recomendaciones.setOnClickListener {
+            val intent = Intent(this@MenuEmpleadoActivity, RecomendacionesActivity::class.java)
             startActivity(intent)
         }
         inventario.setOnClickListener {

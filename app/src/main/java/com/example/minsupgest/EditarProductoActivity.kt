@@ -1,6 +1,7 @@
 package com.example.minsupgest
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -11,8 +12,9 @@ class EditarProductoActivity : AppCompatActivity() {
 
     private lateinit var db: FirebaseFirestore
     private lateinit var idDocumento: String
+    private lateinit var btnRegreso: Button
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editar_producto)
@@ -28,6 +30,9 @@ class EditarProductoActivity : AppCompatActivity() {
         findViewById<EditText>(R.id.edPrecioEmp).setText(precioEmp.toString())
         findViewById<EditText>(R.id.edPrecioProv).setText(precioProv.toString())
         findViewById<EditText>(R.id.edStock).setText(stock.toString())
+
+        //Vinculación
+        btnRegreso = findViewById(R.id.btnVolver)
 
         db.collection("productos").whereEqualTo("nombre_prod", nombre)
             .get()
@@ -62,5 +67,9 @@ class EditarProductoActivity : AppCompatActivity() {
                 finish()
             }
         }
-    }
+
+        btnRegreso.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed() //Regreso a la ventana anterior
+        }
+    }//onCreate
 }
