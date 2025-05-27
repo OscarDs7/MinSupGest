@@ -89,12 +89,21 @@ class RecomendacionesActivity : AppCompatActivity() {
 
         val xAxis = barChart.xAxis
         xAxis.valueFormatter = IndexAxisValueFormatter(labels)
-        xAxis.position = XAxis.XAxisPosition.BOTTOM
-        xAxis.setDrawGridLines(false)
         xAxis.granularity = 1f
         xAxis.labelRotationAngle = -45f
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+        xAxis.setDrawLabels(true)
 
+        // Ejes y descripción
+        barChart.axisLeft.axisMinimum = 0f
         barChart.axisRight.isEnabled = false
+        barChart.description.isEnabled = false
+
+        // Espaciado y presentación
+        barChart.setFitBars(true)
+        barChart.setExtraOffsets(10f, 16f, 10f, 35f) // Deja más espacio inferior para etiquetas giradas
+        barChart.setExtraTopOffset(16f)
+
         barChart.animateY(1000)
         barChart.invalidate()
     }
