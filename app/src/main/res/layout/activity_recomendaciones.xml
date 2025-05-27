@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/txtResumenRecomendacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cargando..."
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="16dp"/>
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barChartRecomendaciones"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginBottom="16dp"/>
+
+        <TableLayout
+            android:id="@+id/tblRecomendaciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1">
+
+            <TableRow>
+                <TextView
+                    android:text="Producto"
+                    android:padding="8dp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:background="#2196F3" />
+                <TextView
+                    android:text="Ventas"
+                    android:padding="8dp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:background="#2196F3" />
+            </TableRow>
+            <Button
+                android:id="@+id/btnVolverAlMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Volver al menú"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="#3F51B5"
+                android:textColor="@android:color/white"/>
+        </TableLayout>
+    </LinearLayout>
+</ScrollView>
