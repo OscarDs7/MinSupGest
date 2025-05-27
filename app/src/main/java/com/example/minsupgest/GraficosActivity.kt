@@ -92,7 +92,7 @@ class GraficosActivity : AppCompatActivity() {
                     }
 
                     // Crea un conjunto de datos para el gráfico con las entradas
-                    val dataSet = BarDataSet(entries, "Ventas por producto")
+                    val dataSet = BarDataSet(entries, "Cantidad de ventas por producto")
                     dataSet.valueTextSize = 13f // Tamaño del texto de los valores sobre cada barra
                     dataSet.color = Color.BLUE // Color de las barras
                     dataSet.valueTextColor = Color.parseColor("#ffffff") // Color negro para los textos
@@ -101,22 +101,25 @@ class GraficosActivity : AppCompatActivity() {
                     val data = BarData(dataSet)
                     barChart.data = data
 
-                    // Configura el eje X con las etiquetas de producto
-                    barChart.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
-                    barChart.xAxis.granularity = 1f // Espaciado entre las barras
-                    barChart.xAxis.labelRotationAngle = -45f
-                    barChart.axisRight.isEnabled = false
-                    barChart.animateY(1000)
-                    barChart.xAxis.setDrawLabels(true) // Muestra etiquetas
-                    barChart.xAxis.position = XAxis.XAxisPosition.BOTTOM // Posiciona las etiquetas abajo
+                    // Configuración del eje X
+                    val xAxis = barChart.xAxis
+                    xAxis.valueFormatter = IndexAxisValueFormatter(labels)
+                    xAxis.granularity = 1f
+                    xAxis.labelRotationAngle = -45f
+                    xAxis.position = XAxis.XAxisPosition.BOTTOM
+                    xAxis.setDrawLabels(true)
 
-                    // Configura el eje Y para empezar desde 0
+                    // Ejes y descripción
                     barChart.axisLeft.axisMinimum = 0f
-
-                    // Desactiva la descripción del gráfico (texto por defecto)
+                    barChart.axisRight.isEnabled = false
                     barChart.description.isEnabled = false
 
-                    // Redibuja el gráfico con los nuevos datos
+                    // Espaciado y presentación
+                    barChart.setFitBars(true)
+                    barChart.setExtraOffsets(10f, 16f, 10f, 35f) // Deja más espacio inferior para etiquetas giradas
+                    barChart.setExtraTopOffset(16f)
+
+                    barChart.animateY(1000)
                     barChart.invalidate()
                 }
                 .addOnFailureListener {
@@ -150,24 +153,36 @@ class GraficosActivity : AppCompatActivity() {
                     return@addOnSuccessListener
                 }
 
-                val dataSet = BarDataSet(entries, "Total de ganancia por producto")
+                val dataSet = BarDataSet(entries, "Total de ganancia por producto") // Sin etiqueta si no la quieres mostrar
                 val data = BarData(dataSet)
-                dataSet.valueTextSize = 13f // Tamaño del texto de los valores sobre cada barra
-                dataSet.color = Color.CYAN // Color de las barras
-                dataSet.valueTextColor = Color.parseColor("#ffffff") // Color blanco para los textos
+
+                dataSet.valueTextSize = 13f
+                dataSet.color = Color.CYAN
+                dataSet.valueTextColor = Color.WHITE
 
                 barChart2.data = data
-                barChart2.xAxis.valueFormatter = IndexAxisValueFormatter(labels)
-                barChart2.xAxis.granularity = 1f
-                barChart2.xAxis.labelRotationAngle = -45f
-                barChart2.axisRight.isEnabled = false
-                barChart2.animateY(1000)
-                barChart2.xAxis.setDrawLabels(true)
-                barChart2.xAxis.position = XAxis.XAxisPosition.BOTTOM
+
+                // Configuración del eje X
+                val xAxis = barChart2.xAxis
+                xAxis.valueFormatter = IndexAxisValueFormatter(labels)
+                xAxis.granularity = 1f
+                xAxis.labelRotationAngle = -45f
+                xAxis.position = XAxis.XAxisPosition.BOTTOM
+                xAxis.setDrawLabels(true)
+
+                // Ejes y descripción
                 barChart2.axisLeft.axisMinimum = 0f
+                barChart2.axisRight.isEnabled = false
                 barChart2.description.isEnabled = false
 
+                // Espaciado y presentación
+                barChart2.setFitBars(true)
+                barChart2.setExtraOffsets(10f, 16f, 10f, 35f) // Deja más espacio inferior para etiquetas giradas
+                barChart2.setExtraTopOffset(16f)
+
+                barChart2.animateY(1000)
                 barChart2.invalidate()
+
             }
             .addOnFailureListener {
                 Toast.makeText(this, "Error al cargar datos", Toast.LENGTH_SHORT).show()
