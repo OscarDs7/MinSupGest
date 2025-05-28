@@ -20,7 +20,7 @@ class ventasActiviti : AppCompatActivity() {
     private lateinit var cantidad: EditText
     private lateinit var vender: Button
     private lateinit var regresar: Button
-    private lateinit var qrscan:Button
+    private lateinit var qrscan: Button
     private var qrContent: String = ""
 
     @SuppressLint("MissingInflatedId")
@@ -49,16 +49,7 @@ class ventasActiviti : AppCompatActivity() {
                  options.setOrientationLocked(true)
                  options.setBarcodeImageEnabled(true)
                  barcodeLauncher.launch(options)
-
-
-
-
-
-
-
-
-
-         }
+         }//escaneo qr
         vender.setOnClickListener {
             val idBuscada = idproducto.text.toString().trim()
             val cantidadVendida = cantidad.text.toString().toIntOrNull()
