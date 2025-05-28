@@ -12,12 +12,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.firestore.FirebaseFirestore
+import com.journeyapps.barcodescanner.ScanContract
+import com.journeyapps.barcodescanner.ScanOptions
 
 class ventasActiviti : AppCompatActivity() {
     private lateinit var idproducto: EditText
     private lateinit var cantidad: EditText
     private lateinit var vender: Button
     private lateinit var regresar: Button
+    private lateinit var qrscan: Button
+    private var qrContent: String = ""
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,11 +37,19 @@ class ventasActiviti : AppCompatActivity() {
         cantidad = findViewById(R.id.edtCantidad)
         vender = findViewById(R.id.btnventas)
         regresar = findViewById(R.id.btnRegresar3)
+        qrscan = findViewById(R.id.btnqr)
 
         val db = FirebaseFirestore.getInstance()
         //val productosVRef = db.collection("ventas")
         //val productosRef = db.collection("productos")
-
+         qrscan.setOnClickListener {
+                 val options = ScanOptions()
+                 options.setPrompt("Escanea un código QR")
+                 options.setBeepEnabled(true)
+                 options.setOrientationLocked(true)
+                 options.setBarcodeImageEnabled(true)
+                 barcodeLauncher.launch(options)
+         }//escaneo qr
         vender.setOnClickListener {
             val idBuscada = idproducto.text.toString().trim()
             val cantidadVendida = cantidad.text.toString().toIntOrNull()
@@ -142,5 +154,16 @@ class ventasActiviti : AppCompatActivity() {
         idproducto.text.clear()
         cantidad.text.clear()
         idproducto.requestFocus()
+    }
+
+    private val barcodeLauncher = registerForActivityResult(ScanContract()) { result ->
+        if (result.contents != null) {
+            qrContent = result.contents
+            idproducto.setText(qrContent)
+            Toast.makeText(this, "Contenido QR: $qrContent", Toast.LENGTH_LONG).show()
+            // Aquí puedes usar qrContent como necesites
+        } else {
+            Toast.makeText(this, "Escaneo cancelado", Toast.LENGTH_SHORT).show()
+        }
     }
 }
