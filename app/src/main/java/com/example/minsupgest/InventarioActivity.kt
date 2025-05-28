@@ -1,9 +1,14 @@
 package com.example.minsupgest
 
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.TypedValue
 import android.view.Gravity
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TableLayout
@@ -17,19 +22,32 @@ import com.google.firebase.firestore.FirebaseFirestore
 class InventarioActivity : AppCompatActivity() {
     //Instancias a componentes gráficos
     private lateinit var tableLayout: TableLayout
+    private lateinit var btnRegresar: Button
     private lateinit var db: FirebaseFirestore //instancia a la clase Firebase
+    private lateinit var btnEditarProducto: Button
+    private var nombreDelProducto: String = ""
+    private var precioEmpresa: Double = 0.0
+    private var precioProveedor: Double = 0.0
+    private var stockActual: Long = 0
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inventario)
 
         tableLayout = findViewById(R.id.tblDatos)
+        btnRegresar = findViewById(R.id.btnReturned)
         // Inicialización Firebase
         FirebaseApp.initializeApp(this)
         db = FirebaseFirestore.getInstance()
 
         // Llamada a la función
         mostrarDatos()
+
+        // Evento de regreso
+        btnRegresar.setOnClickListener {
+            onBackPressedDispatcher.onBackPressed() //Regreso a la ventana anterior
+        }
 
     }//onCreate
 
@@ -48,6 +66,17 @@ class InventarioActivity : AppCompatActivity() {
 
                     agregarFila(nombre, precio_empresa, precio_proveedor, cantidad)
                 }
+                btnEditarProducto = findViewById(R.id.btnEditarProducto)
+
+                btnEditarProducto.setOnClickListener {
+                    val intent = Intent(this, EditarProductoActivity::class.java)
+                    intent.putExtra("nombre", nombreDelProducto)
+                    intent.putExtra("precio_emp", precioEmpresa)
+                    intent.putExtra("precio_prov", precioProveedor)
+                    intent.putExtra("stock", stockActual)
+                    startActivity(intent)
+                }
+
             }
             .addOnFailureListener { exception ->
                 // Manejo de errores
@@ -55,48 +84,63 @@ class InventarioActivity : AppCompatActivity() {
             }
     }//mostrarDatos
 
-    /*
-    private fun agregarEncabezado() {
-        val fila = TableRow(this)
-        fila.setBackgroundColor(0xFFE0E0E0.toInt())
-        fila.gravity = Gravity.CENTER
-
-        val columnas = listOf("Nombre", "Precio", "Proveedor", "Stock")
-        columnas.forEach {
-            val tv = crearTextView(it, true)
-            fila.addView(tv)
-        }
-        tableLayout.addView(fila)
-    }//agregarEncabezado*/
-
+    // Inserción de toda una fila completa de información
     private fun agregarFila(nombre: String, precio_emp: String, precio_prov: String, cantidad: String) {
         val fila = TableRow(this)
 
+        // Convertimos cantidad a Int (manejo de errores incluido)
+        val cantidadInt = cantidad.toIntOrNull() ?: 0
+
+        // Si el stock es crítico, cambia color de fondo
+        if (cantidadInt <= 5) {
+            fila.setBackgroundColor(Color.parseColor("#f29494")) // rojo claro
+        }
+
+        // Añadimos los campos como celdas
         val valores = listOf(nombre, precio_emp, precio_prov, cantidad)
         valores.forEach {
             val tv = crearTextView(it)
             fila.addView(tv)
         }
+
+        // Añadir fila a la tabla
         tableLayout.addView(fila)
 
+        // Evento clic en fila
         fila.setOnClickListener {
-            mostrarDetalle(nombre, precio_emp, cantidad, "") // puedes pasar una URL si tuvieras una imagen de Firebase, por ahora usa la imagen local
+            mostrarDetalle(nombre, precio_emp, cantidad, "")
+            // Guardar variables para edición
+            nombreDelProducto = nombre
+            precioEmpresa = precio_emp.toDoubleOrNull() ?: 0.0
+            precioProveedor = precio_prov.toDoubleOrNull() ?: 0.0
+            stockActual = cantidad.toLongOrNull() ?: 0
+
         }
     }//agregarFila
 
-    private fun crearTextView(texto: String, isHeader: Boolean = false): TextView {
-        return TextView(this).apply {
+    //Creación de las celdas o campos de la tabla
+    private fun crearTextView(texto: String,  isHeader: Boolean = false): TextView {
+        val textView = TextView(this)
+        textView.apply {
             text = texto
-            setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
+            setTextSize(TypedValue.COMPLEX_UNIT_SP, 15f)
             setPadding(16, 8, 16, 8)
             gravity = Gravity.CENTER
+            maxLines = 2
+            ellipsize = TextUtils.TruncateAt.END
+            layoutParams = TableRow.LayoutParams(0, TableRow.LayoutParams.WRAP_CONTENT, 1f) // Responsive de la celda
             if (isHeader) {
                 setTypeface(null, Typeface.BOLD)
             }
         }
+        return textView
     }//crearTextView
 
 
+
+    @SuppressLint("SetTextI18n")
+
+    /*Función para mostrar los detalles de un producto dentro del cardview*/
     private fun mostrarDetalle(nombre: String, precio: String, stock: String, imagenUrl: String) {
         val contenedor = findViewById<LinearLayout>(R.id.rvProducto)
         contenedor.removeAllViews()
@@ -117,8 +161,5 @@ class InventarioActivity : AppCompatActivity() {
 
         contenedor.addView(cardView)
     }
-
-
-
 
 }

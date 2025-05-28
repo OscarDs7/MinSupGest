@@ -8,11 +8,12 @@
     android:background="@drawable/cuadro_grande">
 
     <TextView
-        android:id="@+id/txtPerfil"
-        android:layout_width="wrap_content"
+        android:id="@+id/txtEditProduct"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:text="Perfil del Empleado"
+        android:text="Editar Producto"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -21,82 +22,100 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/etNombre"
+        android:id="@+id/edNombre"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:hint="Nombre:"
+        android:hint="Nombre"
         android:minHeight="48dp"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPerfil" />
+        app:layout_constraintTop_toBottomOf="@+id/txtEditProduct" />
 
     <EditText
-        android:id="@+id/etApellido"
+        android:id="@+id/edPrecioEmp"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:hint="Apellido:"
+        android:hint="Precio Empresa"
+        android:inputType="numberDecimal"
         android:minHeight="48dp"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/etNombre"
-        app:layout_constraintTop_toBottomOf="@+id/etNombre" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edNombre" />
 
     <EditText
-        android:id="@+id/etCorreo"
+        android:id="@+id/edPrecioProv"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:hint="Correo:"
+        android:hint="Precio Proveedor"
+        android:inputType="numberDecimal"
         android:minHeight="48dp"
+        android:textAlignment="center"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etApellido" />
+        app:layout_constraintTop_toBottomOf="@+id/edPrecioEmp" />
+
+    <EditText
+        android:id="@+id/edStock"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:hint="Stock"
+        android:inputType="number"
+        android:minHeight="48dp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edPrecioProv" />
 
     <Button
-        android:id="@+id/btnEditar"
+        android:id="@+id/btnGuardarCambios"
         android:layout_width="250dp"
         android:layout_height="60dp"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="#3F51B5"
-        android:text="Editar"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="#1E32E9"
+        android:text="Guardar Cambios"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCorreo" />
+        app:layout_constraintTop_toBottomOf="@+id/edStock" />
 
     <Button
-        android:id="@+id/btnEliminar"
+        android:id="@+id/btnEliminarProducto"
         android:layout_width="250dp"
         android:layout_height="60dp"
         android:layout_marginTop="24dp"
-        android:backgroundTint="#BD0F0F"
-        android:text="Eliminar"
+        android:backgroundTint="#C30505"
+        android:text="Eliminar Producto"
+        android:textColor="@color/white"
+        android:textColorHint="#E91E63"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnEditar" />
+        app:layout_constraintTop_toBottomOf="@+id/btnGuardarCambios" />
 
     <Button
-        android:id="@+id/btnLeave"
+        android:id="@+id/btnVolver"
         android:layout_width="250dp"
         android:layout_height="60dp"
-        android:layout_marginStart="160dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="161dp"
-        android:text="Salir"
+        android:text="Regresar"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnEliminar" />
+        app:layout_constraintTop_toBottomOf="@+id/btnEliminarProducto" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-

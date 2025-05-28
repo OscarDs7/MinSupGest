@@ -10,6 +10,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.content.Intent
 import android.graphics.Paint
 import android.widget.TextView
+import android.content.Context
+import android.content.pm.PackageManager
+import android.os.Build
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import com.google.firebase.firestore.FirebaseFirestore
 
 class MenuAdminActivity : AppCompatActivity() {
    // val statistics = findViewById<ImageButton>(R.id.imgbStatistics)
@@ -18,6 +24,7 @@ class MenuAdminActivity : AppCompatActivity() {
     private lateinit var btnvender:Button
     private lateinit var ibtnEmpleados: ImageButton
     private lateinit var txtRegreso: TextView
+    private lateinit var ibtnEstadisticas: ImageButton
 
     //val recommendations = findViewById<ImageButton>(R.id.imgbComments)
     //val employees = findViewById<ImageButton>(R.id.imgbEmployes)
@@ -32,10 +39,25 @@ class MenuAdminActivity : AppCompatActivity() {
         btnAgregarProducto = findViewById(R.id.btnAgregarProducto)
         btnvender = findViewById(R.id.btnVenta)
         ibtnEmpleados = findViewById(R.id.imgbEmployes)
+        ibtnEstadisticas = findViewById(R.id.imgbStatistics)
         txtRegreso = findViewById(R.id.txtRegreso)
+
+        /* Permiso para el envío de notificaciones a dispositivos android >= 13 */
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(android.Manifest.permission.POST_NOTIFICATIONS),
+                    1001
+                )
+            }
+        }
+
+        verificarStockCritico(this)
         //propiedad de subrayado
         txtRegreso.paintFlags = txtRegreso.paintFlags or Paint.UNDERLINE_TEXT_FLAG
-
+        val imgBtnRecomendaciones = findViewById<ImageButton>(R.id.imgbComments)
         //Eventos listener
         inventary.setOnClickListener {
             val intent = Intent(this@MenuAdminActivity, InventarioActivity::class.java)
@@ -58,5 +80,30 @@ class MenuAdminActivity : AppCompatActivity() {
             startActivity(intent)
             Toast.makeText(this@MenuAdminActivity, "Saliendo de rol Gerente...", Toast.LENGTH_SHORT).show()
         }
+        ibtnEstadisticas.setOnClickListener {
+            val intent = Intent(this@MenuAdminActivity, GraficosActivity::class.java)
+            startActivity(intent)
+        }
+        imgBtnRecomendaciones.setOnClickListener {
+            val intent = Intent(this, RecomendacionesActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    fun verificarStockCritico(context: Context) {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("productos")
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    val nombre = document.getString("nombre_prod") ?: continue
+                    val stock = document.getLong("stock") ?: continue
+
+                    if (stock <= 5) {
+                        val mensaje = "El producto \"$nombre\" tiene solo $stock unidades disponibles."
+                        NotificationUtils.mostrarNotificacion(context, "Stock Crítico", mensaje)
+                    }
+                }
+            }
     }
 }
