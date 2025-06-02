@@ -5,7 +5,8 @@
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/cuadro_grande">
+    android:background="@drawable/cuadro_grande"
+    android:backgroundTint="#2FC8E2">
 
     <TextView
         android:id="@+id/txtPerfil"
@@ -65,7 +66,7 @@
         android:id="@+id/btnEditar"
         android:layout_width="250dp"
         android:layout_height="60dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="70dp"
         android:backgroundTint="#3F51B5"
         android:text="Editar"
         android:textSize="18sp"
@@ -77,7 +78,7 @@
         android:id="@+id/btnEliminar"
         android:layout_width="250dp"
         android:layout_height="60dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="#BD0F0F"
         android:text="Eliminar"
         android:textSize="18sp"
@@ -90,7 +91,7 @@
         android:layout_width="250dp"
         android:layout_height="60dp"
         android:layout_marginStart="160dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="161dp"
         android:text="Salir"
         android:textSize="18sp"
