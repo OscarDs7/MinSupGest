@@ -23,7 +23,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 class MenuEmpleadoActivity : AppCompatActivity() {
     //Instancias
     private lateinit var inventario: ImageButton
-    private lateinit var agregar_prod: Button
     private lateinit var cerrar_sesion: TextView
     private lateinit var estadisticas: ImageButton
     private lateinit var recomendaciones: ImageButton
@@ -43,7 +42,6 @@ class MenuEmpleadoActivity : AppCompatActivity() {
         inventario = findViewById(R.id.imgbInventary2)
         estadisticas = findViewById(R.id.imgbStatistics2)
         recomendaciones = findViewById(R.id.imgbComments2)
-        agregar_prod = findViewById(R.id.btnAgregar)
         hacer_venta = findViewById(R.id.btnSale)
         cerrar_sesion = findViewById(R.id.txtRegreso1)
 
@@ -74,10 +72,6 @@ class MenuEmpleadoActivity : AppCompatActivity() {
         }
         inventario.setOnClickListener {
             val intent = Intent(this@MenuEmpleadoActivity, InventarioActivity::class.java)
-            startActivity(intent)
-        }
-        agregar_prod.setOnClickListener {
-            val intent = Intent(this@MenuEmpleadoActivity, AgregarProductoActivity::class.java)
             startActivity(intent)
         }
         hacer_venta.setOnClickListener {
