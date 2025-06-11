@@ -1,4 +1,4 @@
-name: Build Debug APK
+name: Build and Deploy Debug APK to Firebase App Distribution
 
 on:
   push:
@@ -26,10 +26,13 @@ jobs:
       - name: Build debug APK
         run: ./gradlew assembleDebug
 
+      - name: List APK files (for debug)
+        run: ls -l app/build/outputs/apk/debug/
+
       - name: Upload APK to Firebase App Distribution
         uses: wzieba/Firebase-Distribution-Github-Action@v1
         with:
           appId: ${{ secrets.FIREBASE_APP_ID }}
           token: ${{ secrets.FIREBASE_TOKEN }}
-          groups: testers
+          groups: testers  # Cambia este grupo según tu configuración
           file: app/build/outputs/apk/debug/app-debug.apk
