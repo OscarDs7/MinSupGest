@@ -23,11 +23,11 @@ jobs:
 
       - name: Decode keystore file
         run: |
-          echo "${{ secrets.KEYSTORE_FILE }}" | base64 --decode > my-release-key.jks
+          echo "${{ secrets.KEYSTORE_FILE }}" | base64 --decode > signed_app.jks
 
       - name: Create signing.properties file
         run: |
-          echo "storeFile=my-release-key.jks" > $GITHUB_WORKSPACE/signing.properties
+          echo "storeFile=signed_app.jks" > $GITHUB_WORKSPACE/signing.properties
           echo "storePassword=${{ secrets.STORE_PASSWORD }}" >> $GITHUB_WORKSPACE/signing.properties
           echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> $GITHUB_WORKSPACE/signing.properties
           echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> $GITHUB_WORKSPACE/signing.properties
