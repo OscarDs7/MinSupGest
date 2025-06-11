@@ -21,14 +21,22 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Decode keystore file
+        run: |
+          echo "${{ secrets.KEYSTORE_FILE }}" | base64 --decode > my-release-key.jks
+
+      - name: Create signing.properties file
+        run: |
+          echo "storeFile=my-release-key.jks" >> signing.properties
+          echo "storePassword=${{ secrets.STORE_PASSWORD }}" >> signing.properties
+          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> signing.properties
+          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> signing.properties
+
       - name: Grant execute permission to gradlew
         run: chmod +x ./gradlew
 
-      - name: Build debug APK
-        run: ./gradlew assembleDebug
-
-      - name: List APKs
-        run: ls -R app/build/outputs/apk/
+      - name: Build signed release APK
+        run: ./gradlew assembleRelease -PsigningProperties=signing.properties
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
@@ -39,4 +47,4 @@ jobs:
           appId: ${{ secrets.FIREBASE_APP_ID }}
           token: ${{ secrets.FIREBASE_TOKEN }}
           groups: testers
-          file: app/build/outputs/apk/debug/app-debug.apk
+          file: app/build/outputs/apk/release/app-release.apk
