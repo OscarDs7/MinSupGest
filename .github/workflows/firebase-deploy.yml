@@ -9,7 +9,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: firebase-deploy  # Asegúrate de tener este Environment creado en GitHub
+    environment: firebase-deploy
 
     steps:
       - name: Checkout code
@@ -24,8 +24,11 @@ jobs:
       - name: Grant execute permission to gradlew
         run: chmod +x ./gradlew
 
-      - name: Build release APK
-        run: ./gradlew assembleRelease
+      - name: Build debug APK
+        run: ./gradlew assembleDebug
+
+      - name: List APKs
+        run: ls -R app/build/outputs/apk/
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
@@ -36,4 +39,4 @@ jobs:
           appId: ${{ secrets.FIREBASE_APP_ID }}
           token: ${{ secrets.FIREBASE_TOKEN }}
           groups: testers
-          file: app/build/outputs/apk/release/app-release.apk
+          file: app/build/outputs/apk/debug/app-debug.apk
