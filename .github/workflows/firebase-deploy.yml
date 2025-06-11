@@ -27,16 +27,19 @@ jobs:
 
       - name: Create signing.properties file
         run: |
-          echo "storeFile=my-release-key.jks" >> signing.properties
-          echo "storePassword=${{ secrets.STORE_PASSWORD }}" >> signing.properties
-          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> signing.properties
-          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> signing.properties
+          echo "storeFile=my-release-key.jks" > $GITHUB_WORKSPACE/signing.properties
+          echo "storePassword=${{ secrets.STORE_PASSWORD }}" >> $GITHUB_WORKSPACE/signing.properties
+          echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> $GITHUB_WORKSPACE/signing.properties
+          echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> $GITHUB_WORKSPACE/signing.properties
+
+      - name: Debug signing.properties
+        run: cat $GITHUB_WORKSPACE/signing.properties
 
       - name: Grant execute permission to gradlew
         run: chmod +x ./gradlew
 
       - name: Build signed release APK
-        run: ./gradlew assembleRelease -PsigningProperties=signing.properties
+        run: ./gradlew assembleRelease -PsigningProperties=$GITHUB_WORKSPACE/signing.properties
 
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
