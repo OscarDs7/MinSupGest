@@ -25,11 +25,21 @@ android {
 
     signingConfigs {
         create("release") {
-            val propsFile = if (project.hasProperty("signingProperties")) {
-                file(project.property("signingProperties") as String)
+            val propsFilePath = project.findProperty("signingProperties") as? String
+            val propsFile = propsFilePath?.let { file(it) }
+
+            if (propsFile?.exists() == true) {
+                val props = Properties().apply {
+                    FileInputStream(propsFile).use { load(it) }
+                }
+                storeFile = file(props["storeFile"] as String)
+                storePassword = props["storePassword"] as String
+                keyAlias = props["keyAlias"] as String
+                keyPassword = props["keyPassword"] as String
             } else {
-                null
+                println("⚠️ signing.properties file not found or not provided.")
             }
+
 
             if (propsFile?.exists() == true) {
                 val props = Properties().apply {
