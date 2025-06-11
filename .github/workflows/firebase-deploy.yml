@@ -9,7 +9,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: firebase-deploy
+    environment: firebase-deploy  # Asegúrate de tener este Environment creado en GitHub
 
     steps:
       - name: Checkout code
