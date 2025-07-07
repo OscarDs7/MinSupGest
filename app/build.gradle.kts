@@ -1,3 +1,7 @@
+import org.apache.commons.logging.LogFactory.release
+import java.util.Properties
+import java.io.FileInputStream
+
 plugins {
         id("com.android.application")
         // Add the Google services Gradle plugin
@@ -19,8 +23,39 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    signingConfigs {
+        create("release") {
+            val propsFilePath = project.findProperty("signingProperties") as? String
+            val propsFile = propsFilePath?.let { file(it) }
+
+            if (propsFile?.exists() == true) {
+                val props = Properties().apply {
+                    FileInputStream(propsFile).use { load(it) }
+                }
+                storeFile = file(props["storeFile"] as String)
+                storePassword = props["storePassword"] as String
+                keyAlias = props["keyAlias"] as String
+                keyPassword = props["keyPassword"] as String
+            } else {
+                println("⚠️ signing.properties file not found or not provided.")
+            }
+
+
+            if (propsFile?.exists() == true) {
+                val props = Properties().apply {
+                    load(FileInputStream(propsFile))
+                }
+                storeFile = file(props["storeFile"] as String)
+                storePassword = props["storePassword"] as String
+                keyAlias = props["keyAlias"] as String
+                keyPassword = props["keyPassword"] as String
+            }
+        }
+    }
+
     buildTypes {
-        release {
+        getByName("release") {
+            signingConfig = signingConfigs.getByName("release")
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -28,6 +63,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -35,6 +71,7 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
 }
 
 dependencies {
