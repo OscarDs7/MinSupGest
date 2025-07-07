@@ -1,13 +1,9 @@
-import org.apache.commons.logging.LogFactory.release
-import java.util.Properties
-import java.io.FileInputStream
-
 plugins {
-        id("com.android.application")
-        // Add the Google services Gradle plugin
-        id("com.google.gms.google-services")
-        alias(libs.plugins.kotlin.android) // Dejamos solo el alias de Kotlin
-    }
+    id("com.android.application")
+    // Add the Google services Gradle plugin
+    id("com.google.gms.google-services")
+    alias(libs.plugins.kotlin.android) // Dejamos solo el alias de Kotlin
+}
 
 android {
     namespace = "com.example.minsupgest"
@@ -23,39 +19,8 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    signingConfigs {
-        create("release") {
-            val propsFilePath = project.findProperty("signingProperties") as? String
-            val propsFile = propsFilePath?.let { file(it) }
-
-            if (propsFile?.exists() == true) {
-                val props = Properties().apply {
-                    FileInputStream(propsFile).use { load(it) }
-                }
-                storeFile = file(props["storeFile"] as String)
-                storePassword = props["storePassword"] as String
-                keyAlias = props["keyAlias"] as String
-                keyPassword = props["keyPassword"] as String
-            } else {
-                println("⚠️ signing.properties file not found or not provided.")
-            }
-
-
-            if (propsFile?.exists() == true) {
-                val props = Properties().apply {
-                    load(FileInputStream(propsFile))
-                }
-                storeFile = file(props["storeFile"] as String)
-                storePassword = props["storePassword"] as String
-                keyAlias = props["keyAlias"] as String
-                keyPassword = props["keyPassword"] as String
-            }
-        }
-    }
-
     buildTypes {
-        getByName("release") {
-            signingConfig = signingConfigs.getByName("release")
+        release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -63,7 +28,6 @@ android {
             )
         }
     }
-
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -71,7 +35,6 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-
 }
 
 dependencies {
@@ -82,7 +45,6 @@ dependencies {
     implementation ("com.google.firebase:firebase-storage-ktx")
     implementation ("com.google.firebase:firebase-firestore-ktx")
     implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
-    implementation("com.journeyapps:zxing-android-embedded:4.3.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
