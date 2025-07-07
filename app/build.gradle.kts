@@ -40,11 +40,15 @@ android {
 dependencies {
     // Importamos el Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:33.12.0"))
+    // Dependencias de Firebase
     implementation("com.google.firebase:firebase-analytics")
     implementation ("com.google.firebase:firebase-firestore:24.7.1")
     implementation ("com.google.firebase:firebase-storage-ktx")
     implementation ("com.google.firebase:firebase-firestore-ktx")
+    // dependencia para generar gráficos estadísticos
     implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+    // dependencia para el código QR
+    implementation("com.journeyapps:zxing-android-embedded:4.3.0")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
